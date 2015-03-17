@@ -1,0 +1,45 @@
+.boton-menu{
+	margin: 0px;
+	padding: 0px;
+	height: 50px;
+	color:white;
+	/*list-style: none;*/
+}
+/*.boton-menu:hover{
+	position: absolute;
+	top: 35px;
+	left: 0px;
+	height: 1px;
+	width: 0px;
+	background-color: #69cdff;
+}*/
+.mochi-boton {
+  background-color: #69cdff;
+}
+.noDecoration, a:link, a:visited {
+    text-decoration: none;
+}
+.formulario{
+	margin-top: 20px;
+	/*margin-bottom: auto;*/
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 300px;
+	min-height: 400px;
+	width: 25%;
+	height: 40%;
+	padding: 50px;
+	border: 3px solid #333;
+	border-radius: 10px;
+}
+.inputStyler{
+	width: 100%;
+}
+.formBg{
+	background-color: white;
+	padding: 50px;
+	box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.8);
+}
+.nice-padding{
+	background-color: #333;
+}
