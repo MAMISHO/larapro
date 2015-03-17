@@ -23,6 +23,7 @@ enyo.kind({
 	kind: "FittableRows", 
 	classes: "enyo-fit enyo-unselectable padding15px formBg",
 	components: [
+	{tag:"form", attributes:{action:"http://localhost/larapro/public/home"}, components:[
 		{tag:"div", style:"text-align: center; color: black;",components:[
 			{kind: "fa.Icon", name:"usuarioIcon", icon: "fa-user", size: 5},
 		]},
@@ -104,7 +105,7 @@ enyo.kind({
 		// },
 
 		{ style:"height:10px" },
-		{kind:"onyx.Button", name:"actualizar", classes:"onyx-blue", content:"Ingresar", ontap: "tap", style:"color:white;", attributes:{type:"submit"}},
+		{kind:"onyx.Button", name:"actualizar", classes:"onyx-blue", content:"Ingresar", ontap: "taping", style:"color:white;", attributes:{type:"submit"}}
 		// {kind: "onyx.Toolbar",
 		// classes:"onyx-blue",
 		// layoutKind: "FittableColumnsLayout",
@@ -112,17 +113,16 @@ enyo.kind({
 		// components: [
 		// 		{kind:"onyx.Button", name:"actualizar", classes:"onyx-blue", content:"Ingresar", ontap: "tap"},
 		// 		// {kind:"onyx.Button", name:"cancelar", classes:"onyx-blue", content:"recordar contraseña"}  		
-		// ]},
+		]},
 		
 	],
 	obj:[],
 	create: function(inSender,inEvent){
 		this.inherited(arguments);
-		
 	},
-	tap: function(inSender, inEvent){
+	taping: function(inSender, inEvent){
 		// console.log(this.obj);
-		window.location = 'http://localhost:8888/larapro/public/home?user'+this.$.user.getValue();
+		window.location = 'http://localhost/larapro/public/home?user'+this.$.user.getValue();
 		// this.obj.$.titulo.setContent(this.$.titulo.getValue());
 		// this.obj.$.contenido.setContent(this.$.contenido.getValue());
 		// console.log(this.getAllowHtml());

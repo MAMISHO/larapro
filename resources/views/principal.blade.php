@@ -2,7 +2,7 @@
 	<head>
 		<title>Laravel</title>
 		
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+		<!-- <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'> -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>page 2</title>
 		<link rel="shortcut icon" href="../resources/assets/ae/resources/assets/favicon.ico"/>
@@ -11,7 +11,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<!-- Less.js (for client-side rendering of less stylesheets; comment to use pre-compiled CSS) -->
-		 <script src="../resources/assets/ae/enyo/tools/less.js"></script>
+		 <!-- <script src="../resources/assets/ae/enyo/tools/less.js"></script> -->
 		<!-- enyo (debug) -->
 		<script src="../resources/assets/ae/enyo/enyo.js" charset="utf-8"></script>
 		<!-- application (debug) -->
@@ -49,16 +49,16 @@
 			}
 
 			.quote {
-				font-size: 24px;
+				font-size: 14px;
 			}
 		</style>
 	</head>
 	<body>
 		<script type="text/javascript">
-				enyo.ready(function () {
+				// enyo.ready(function () {
 					new myapp.Application({name: "app"});
-				});
-			</script>
+				// });
+		</script>
 		<!-- <div class="container">
 			<div class="content">
 				<div class="title">Principal</div>

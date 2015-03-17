@@ -10,15 +10,15 @@ enyo.kind({
 	fit: true,
 	components:[
 		{kind: "onyx.Toolbar",classes:"onyx-light", components: [
-			// {content: "Examenes"},
-			{kind: "mochi.Button", content: "Exámenes", ontap: "helloWorldTap", name:"boton1", onmouseover:"over", onmouseout:"out", attributes: {href:"http://localhost:8888/larapro/public/home",onclick:"window.location = 'http://localhost:8888/larapro/public/home'", target:"_new"}},
+			{content: "Exámenes", classes:"titulo"},
+			// {kind: "mochi.Button", content: "Exámenes", ontap: "helloWorldTap", name:"boton1", onmouseover:"over", onmouseout:"out", attributes: {href:"http://localhost:8888/larapro/public/home",onclick:"window.location = 'http://localhost:8888/larapro/public/home'", target:"_new"}}
 		]},
 		{kind: "enyo.Scroller", fit: true,classes:"nice-padding" ,components: [
 			{name: "main", classes: "nice-padding", allowHtml: true},
 			{kind: "Formulario"}
 
 		]},
-		{kind: "onyx.Toolbar", layoutKind: "FittableColumnsLayout",components:[
+		{kind: "onyx.Toolbar", layoutKind: "FittableColumnsLayout", style:"text-align:right; font-size:12px;",components:[
 				{content: "Trabajo de AE", classes:"quote"}
 		]},
 	],
