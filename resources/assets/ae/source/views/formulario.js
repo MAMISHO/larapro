@@ -23,7 +23,7 @@ enyo.kind({
 	kind: "FittableRows", 
 	classes: "enyo-fit enyo-unselectable padding15px formBg",
 	components: [
-	{tag:"form", attributes:{action:"http://localhost/larapro/public/home"}, components:[
+	{tag:"form", attributes:{action:"http://localhost/larapro/public/home", method:"post"}, components:[
 		{tag:"div", style:"text-align: center; color: black;",components:[
 			{kind: "fa.Icon", name:"usuarioIcon", icon: "fa-user", size: 5},
 		]},
@@ -41,7 +41,8 @@ enyo.kind({
 					focus:true,
 					attributes:{
 						maxlength:80,
-						required:"required"				
+						required:"required",
+						id:"usuario"				
 					}
 				}
 			] 	
@@ -58,7 +59,8 @@ enyo.kind({
 					type:"password",
 					attributes:{
 						maxlength:80,
-						required:"required"				
+						required:"required",
+						id:"clave"		
 					}
 				}
 			] 	
@@ -122,7 +124,7 @@ enyo.kind({
 	},
 	taping: function(inSender, inEvent){
 		// console.log(this.obj);
-		window.location = 'http://localhost/larapro/public/home?user'+this.$.user.getValue();
+		window.location = 'http://localhost/larapro/public/home?usuario='+this.$.user.getValue();
 		// this.obj.$.titulo.setContent(this.$.titulo.getValue());
 		// this.obj.$.contenido.setContent(this.$.contenido.getValue());
 		// console.log(this.getAllowHtml());
