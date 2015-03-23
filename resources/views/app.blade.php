@@ -44,7 +44,7 @@
 						<!-- <li><a href="{{ url('/auth/register') }}">Register</a></li> -->
 					@else
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Session::get('miSession', 'usuario') }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="bienvenida">Bienvenido/a</span> {{ Session::get('miSession', 'usuario') }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{ url('/auth/logout') }}">Salir</a></li>
 							</ul>

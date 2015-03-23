@@ -102,9 +102,10 @@ trait ComprobarLogin {
 		$this->validate($request, [
 			'usuario' 	=> 'required',
 			'clave' 	=> 'required',
+			'_tipo_login' => 'required'
 		]);
 
-		$credentials = $request->only('usuario', 'clave');
+		$credentials = $request->only('usuario', 'clave', '_tipo_login');
 
 		// if ($this->auth->attempt($credentials, $request->has('remember')))
 		// {
@@ -129,10 +130,12 @@ trait ComprobarLogin {
 		$aux;
 		$usuario = null;
 		$clave = null;
+		// $tipo_login = null;
 		foreach($user as &$aux) {
 			$aux     = get_object_vars($aux);
 			$usuario =$aux['usuario'];
 			$clave 	=$aux['clave'];
+			// $tipo_login = $aux['tipo_login'];
 		}
 
 		if ($usuario)	//Existe usuario, se verifica el password
@@ -140,11 +143,13 @@ trait ComprobarLogin {
 			if (\Hash::check($credentials['clave'], $clave))//Loogueado con exito
 			{
 				
-				
+				$str = strtoupper(\Input::get('usuario'));
 				\Session::put('miSession', \Input::get('clave'));
-				\Session::put('miSession', \Input::get('usuario'));
+				\Session::put('miSession', $str);
 				// return view('home', array('usuario'=>$usuario));
-				// return "correcto";
+				
+				// return $credentials;
+				
 				return redirect($this->homePath());
 
 			}

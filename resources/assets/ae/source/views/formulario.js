@@ -14,7 +14,7 @@ enyo.kind({
 		// this.render();
 	},
 	doEditar:function(obj){
-		console.log("Customizer -> doEditar");
+		// console.log("Customizer -> doEditar");
 		this.$.form.doCargaDatos(obj);
 	}
 
@@ -53,7 +53,8 @@ enyo.kind({
 						name:"usuario"
 					}
 				},
-				{tag:"input",name:"oculto", attributes:{type:"hidden",name:"_token", value:"{{ csrf_token() }}"}}
+				{tag:"input",name:"oculto", attributes:{type:"hidden",name:"_token", value:"{{ csrf_token() }}"}},
+				{tag:"input",name:"tipo_login", attributes:{type:"hidden",name:"_tipo_login", value:"1"}}
 			] 	
 		},
 		{ style:"height:20px" },
@@ -79,7 +80,9 @@ enyo.kind({
 		{ style:"height:10px" },
 		{
 			name:"pickerMemberType",
-			kind: "onyx.PickerDecorator", 
+			onSelect: "itemSelected",
+			kind: "onyx.PickerDecorator",
+			// attributes:{name:"tipo_login", value:"1"},
 			components: [
 				{
 					kind: "onyx.PickerButton", 
@@ -87,11 +90,12 @@ enyo.kind({
 					style: "width: 100%"
 				},
 				{
-					kind: "onyx.Picker", 
+					kind: "onyx.Picker",
+					// attributes:{name:"tipo_login"},
 					components: [
-						{content: "Tipo 1"},
-						{content: "Tipo 2"},
-						{content: "Tipo 3"}
+						{content: "Clave concertada", active: true, value: 1},
+						{content: "Matriz", value: 2},
+						{content: "Certificado Digital", value: 3}
 					]
 				}
 			]
@@ -125,7 +129,7 @@ enyo.kind({
 		// components: [
 		// 		{kind:"onyx.Button", name:"actualizar", classes:"onyx-blue", content:"Ingresar", ontap: "tap"},
 		// 		// {kind:"onyx.Button", name:"cancelar", classes:"onyx-blue", content:"recordar contraseña"}  		
-		]},
+		]}
 		
 	],
 	obj:[],
@@ -154,10 +158,21 @@ enyo.kind({
 	},
 	doCargaDatos: function(obj){
 		this.obj = obj;
-		console.log("CuadroTexto.Custom -> doEditar");
-		console.log(obj);
+		// console.log("CuadroTexto.Custom -> doEditar");
+		// console.log(obj);
 		this.$.titulo.setValue(obj.$.titulo.getContent());
 		this.$.contenido.setValue(obj.$.contenido.getContent());
 		// this.render();
-	}
+	},
+	itemSelected: function(inSender, inEvent) {
+        // Do something with the selected MenuItem and its content
+        // menuItem = inEvent.selected;
+        // menuItemContent = inEvent.content;
+        // console.log(inEvent.selected);
+        // console.log(inEvent.content);
+        // console.log(inEvent.selected.value);
+        var tipo_login = inEvent.selected.value;
+        // this.$.pickerMemberType.setAttribute("value",tipo_login);
+        this.$.tipo_login.setAttribute("value",tipo_login);
+    }
 });

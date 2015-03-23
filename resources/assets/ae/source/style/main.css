@@ -128,3 +128,14 @@ list-style-type: disc;
 .errores{
 	color: red;
 }
+.container{
+	/*background: olive;*/
+	overflow:hidden;
+	clear: both;
+	height: 100%;
+}
+body { height: 100%;}
+.bienvenida{
+	color: #333;
+	margin-left:30px; margin-right:0;
+}
