@@ -26,13 +26,11 @@ enyo.kind({
 	classes: "enyo-fit enyo-unselectable padding15px formBg",
 	fit:true,
 	components: [
-<<<<<<< Updated upstream
-	{tag:"form", attributes:{action:"http://localhost/larapro/public/home", method:"post"}, components:[
-=======
+
+	// {tag:"form", attributes:{action:"http://localhost/larapro/public/home", method:"post"}, components:[
 	
 	{tag:"form", attributes:{action:"http://localhost/larapro/public/auth/login", method:"POST"}, components:[
 		{tag:"div", classes:"panel-head", content:"Iniciar sesión", style:"text-align:center;"},
->>>>>>> Stashed changes
 		{tag:"div", style:"text-align: center; color: black;",components:[
 			{kind: "fa.Icon", name:"usuarioIcon", icon: "fa-user", size: 5}
 		]},
@@ -51,11 +49,8 @@ enyo.kind({
 					attributes:{
 						maxlength:80,
 						required:"required",
-<<<<<<< Updated upstream
-						id:"usuario"				
-=======
+						id:"usuario",			
 						name:"usuario"
->>>>>>> Stashed changes
 					}
 				},
 				{tag:"input",name:"oculto", attributes:{type:"hidden",name:"_token", value:"{{ csrf_token() }}"}}
@@ -74,11 +69,8 @@ enyo.kind({
 					attributes:{
 						maxlength:80,
 						required:"required",
-<<<<<<< Updated upstream
-						id:"clave"		
-=======
+						id:"clave",	
 						name:"clave"			
->>>>>>> Stashed changes
 					}
 				}
 			] 	
@@ -155,11 +147,7 @@ enyo.kind({
 		// console.log(this.$.oculto.getAttr("value"));
 		// alert(this.$.oculto.getAttr("value"));
 		// console.log(this.obj);
-<<<<<<< Updated upstream
-		window.location = 'http://localhost/larapro/public/home?usuario='+this.$.user.getValue();
-=======
 		//window.location = 'http://localhost/larapro/public/home?user'+this.$.user.getValue();
->>>>>>> Stashed changes
 		// this.obj.$.titulo.setContent(this.$.titulo.getValue());
 		// this.obj.$.contenido.setContent(this.$.contenido.getValue());
 		// console.log(this.getAllowHtml());

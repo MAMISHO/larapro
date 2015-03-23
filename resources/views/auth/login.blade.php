@@ -24,11 +24,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Usuario</label>
 							<div class="col-md-6">
-<<<<<<< Updated upstream
 								<input type="text" class="form-control" name="usuario" value="{{ old('usuario') }}">
-=======
-								<input type="text" class="form-control" name="usuario" value="{{ old('email') }}">
->>>>>>> Stashed changes
 							</div>
 						</div>
 
