@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration {
 			$table->string('apellidos');
 			$table->string('dni')->unique();
 			$table->string('usuario');
-			$table->int('matriz');
-			$table->string('clave', 20);
+			$table->string('matriz');
+			$table->string('clave');
 			$table->rememberToken();
 			$table->timestamps();
 		});

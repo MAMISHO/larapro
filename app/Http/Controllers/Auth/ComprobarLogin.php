@@ -138,6 +138,11 @@ trait ComprobarLogin {
 			// $tipo_login = $aux['tipo_login'];
 		}
 
+
+		// return $credentials['clave']." => ". $clave;
+		// return (Integer)\Hash::check($credentials['clave'], $clave);
+		// return \Hash::make($credentials['clave'])." => ". $clave;
+
 		if ($usuario)	//Existe usuario, se verifica el password
 		{
 			if (\Hash::check($credentials['clave'], $clave))//Loogueado con exito
