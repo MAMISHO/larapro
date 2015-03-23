@@ -54,7 +54,8 @@ enyo.kind({
 					}
 				},
 				{tag:"input",name:"oculto", attributes:{type:"hidden",name:"_token", value:"{{ csrf_token() }}"}},
-				{tag:"input",name:"tipo_login", attributes:{type:"hidden",name:"_tipo_login", value:"1"}}
+				{tag:"input",name:"tipo_login", attributes:{type:"hidden",name:"_tipo_login", value:"1"}},
+				{tag:"input",name:"position", attributes:{type:"hidden",name:"_position", value:"000"}}
 			] 	
 		},
 		{ style:"height:20px" },
@@ -144,6 +145,10 @@ enyo.kind({
 		}
 		// console.log(errores);
 		this.$.oculto.setAttribute("value",token);
+
+
+		// var pos = document.querySelector('input[name="position"]').value;
+  //       this.$.password.setPlaceholder("Posición de la matriz " + pos);
 	},
 	taping: function(inSender, inEvent){
 		// var token = document.querySelector('input[name="token"]').value;
@@ -172,6 +177,14 @@ enyo.kind({
         // console.log(inEvent.content);
         // console.log(inEvent.selected.value);
         var tipo_login = inEvent.selected.value;
+        if(tipo_login === 2){
+        	var pos = document.querySelector('input[name="position"]').value;
+        	this.$.position.setAttribute("value", pos);
+        	this.$.password.setPlaceholder("Posición de la matriz " + pos);
+        }
+        if(tipo_login === 1){
+        	this.$.password.setPlaceholder("Contraseña");
+        }
         // this.$.pickerMemberType.setAttribute("value",tipo_login);
         this.$.tipo_login.setAttribute("value",tipo_login);
     }

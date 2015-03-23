@@ -102,10 +102,11 @@ trait ComprobarLogin {
 		$this->validate($request, [
 			'usuario' 	=> 'required',
 			'clave' 	=> 'required',
-			'_tipo_login' => 'required'
+			'_tipo_login' => 'required',
+			'_position' => 'required',			
 		]);
 
-		$credentials = $request->only('usuario', 'clave', '_tipo_login');
+		$credentials = $request->only('usuario', 'clave', '_tipo_login', '_position');
 
 		// if ($this->auth->attempt($credentials, $request->has('remember')))
 		// {
@@ -133,15 +134,42 @@ trait ComprobarLogin {
 		// $tipo_login = null;
 		foreach($user as &$aux) {
 			$aux     = get_object_vars($aux);
-			$usuario =$aux['usuario'];
-			$clave 	=$aux['clave'];
+			$usuario = $aux['usuario'];
+			$clave 	 = $aux['clave'];
+			$matriz  = $aux['matriz'] ;
 			// $tipo_login = $aux['tipo_login'];
 		}
+		
 
+		// return $credentials["_position"];
+		
+		if ($usuario)	//Existe usuario, se verifica el password
+		{
+			if($credentials["_tipo_login"] === "2" ){ //Comprobar por medio de la matriz
+				$filas = explode(";", $matriz);
+				$cont = 0;
+				$matrix[][]= null;
+				foreach($filas as &$fila) {
+					$matrix[$cont] = explode(",", $fila);
+					$cont++;
+				}
 
-		// return $credentials['clave']." => ". $clave;
-		// return (Integer)\Hash::check($credentials['clave'], $clave);
-		// return \Hash::make($credentials['clave'])." => ". $clave;
+				
+				$position = explode(",", $credentials["_position"]);
+				// return $matrix[$position[0] - 1][$position[1]-1]. " =>". $credentials["_position"]. " == " .$credentials['clave'];
+				if ($matrix[$position[0] - 1][$position[1]-1] === $credentials['clave'])//Loogueado con exito
+				{
+					
+					$str = strtoupper(\Input::get('usuario'));
+					\Session::put('miSession', \Input::get('clave'));
+					\Session::put('miSession', $str);
+					
+					return redirect($this->homePath());
+
+				}
+				
+			}
+		}
 
 		if ($usuario)	//Existe usuario, se verifica el password
 		{

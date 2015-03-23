@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder {
         		'dni'			=>	'53425364N',
         		'usuario'		=>	'mauricio',
         		'clave'			=>	\Hash::make('12345'),
-        		'matriz'		=>	'123'
+        		'matriz'		=>	'123,456,789;123,456,789;123,456,789;'
         	));
     }
 

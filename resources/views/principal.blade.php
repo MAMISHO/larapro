@@ -55,6 +55,7 @@
 	</head>
 	<body class="nice-padding">
 		<input type="hidden" name="token" value="{{ csrf_token() }}">
+		<!-- <input type="hidden" name="position" value="{{ $position }}"> -->
 		@if (count($errors) > 0)
 		<input type="hidden" class="form-control" name="usuario_ant" value="{{ old('usuario_ant') }}">
 						<div class="alert alert-danger">
@@ -71,6 +72,7 @@
 					new myapp.Application({name: "app"});
 				// });
 		</script>
+		<input type="hidden" name="position" value="{{ $position }}">
 		
 		<!-- <div class="container">
 			<div class="content">

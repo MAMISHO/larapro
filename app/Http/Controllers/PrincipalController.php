@@ -29,7 +29,13 @@ class PrincipalController extends Controller {
 	 */
 	public function index()
 	{
-		return view('principal');
+		// $i = rand(1, 8);
+		// $j = rand(1, 8);
+		$i = rand(1, 3);
+		$j = rand(1, 3);
+		$pos = $i.','.$j;
+		return view('principal', array('position'=>$pos));
+		// return view('principal');
 	}
 
 }
