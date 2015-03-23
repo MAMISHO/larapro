@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid nice-padding">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
@@ -24,12 +24,16 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Usuario</label>
 							<div class="col-md-6">
+<<<<<<< Updated upstream
 								<input type="text" class="form-control" name="usuario" value="{{ old('usuario') }}">
+=======
+								<input type="text" class="form-control" name="usuario" value="{{ old('email') }}">
+>>>>>>> Stashed changes
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
+							<label class="col-md-4 control-label">Contraseña</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="clave">
 							</div>

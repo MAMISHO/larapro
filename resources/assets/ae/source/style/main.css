@@ -27,7 +27,7 @@
     text-decoration: none;
 }
 .formulario{
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 	/*margin-bottom: auto;*/
 	margin-left: auto;
 	margin-right: auto;
@@ -35,7 +35,10 @@
 	min-height: 300px;
 	width: 25%;
 	height: 30%;
-	padding: 50px;
+	padding-top:0px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 50px;
 	border: 3px solid #333;
 	border-radius: 10px;
 }
@@ -44,7 +47,10 @@
 }
 .formBg{
 	background-color: white;
-	padding: 50px;
+	padding-top:5px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 100px;
 	box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.8);
 }
 .nice-padding{
@@ -61,4 +67,64 @@
   /* remove automatic tap highlight color */
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+/*paginas*/
+.header{
+	height: auto;
+	margin-bottom: 50px;
+}
+.navbar-var{
+	float: left;
+	margin: 0;
+}
+.nav{
+	margin-bottom: 0;
+	padding-left: 0;
+	list-style: none;
+}
+.navbar-var > li >a{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.nav > li > a:hover, .nav > li > a:focus{
+	text-decoration: none;
+	background-color: #eeeeee;
+}
+ul, ol{
+	margin-top: 0;
+}
+a{
+	color: #337ab7;
+	text-decoration: none;
+}
+a:hover, a:focus{
+	color: #23527c;
+}
+ul{
+	display: block;
+list-style-type: disc;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 40px;
+}
+.alto{
+	height: auto;
+}
+.panel-head{
+	color: #333333;
+	background-color: #f5f5f5;
+	border-color: #dddddd;
+	padding: 10px 15px;
+	border-bottom: 1px solid transparent;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	min-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 25%;
+}
+.errores{
+	color: red;
 }

@@ -11,10 +11,19 @@ enyo.kind({
 	components:[
 		{kind: "onyx.Toolbar",classes:"onyx-light", components: [
 			{content: "Exámenes", classes:"titulo"},
+			{tag:"ul", classes:"nav navbar-nav navbar-right",components:[
+				// {tag:"li", components:[
+				// 	{tag:"a", content: "Login", attributes:{href:"http://localhost/larapro/public/"}, style:"padding:15px; font-weight: 300;"}
+				// ]},
+				{tag:"li", components:[
+					{tag:"a", content: "Registrar", attributes:{href:"http://localhost/larapro/public/auth/register"}, style:"padding:15px; font-weight: 300;"}
+				]}
+			]}
 			// {kind: "mochi.Button", content: "Exámenes", ontap: "helloWorldTap", name:"boton1", onmouseover:"over", onmouseout:"out", attributes: {href:"http://localhost:8888/larapro/public/home",onclick:"window.location = 'http://localhost:8888/larapro/public/home'", target:"_new"}}
 		]},
 		{kind: "enyo.Scroller", fit: true,classes:"nice-padding" ,components: [
 			{name: "main", classes: "nice-padding", allowHtml: true},
+			// {tag:"div", classes:"panel-heading", content:"Login"},
 			{kind: "Formulario"}
 
 		]},
@@ -80,4 +89,38 @@ enyo.kind({
 			this.$.result.setContent("The \"" + inSender.getName() + "\" button was tapped");						
 		}
 	}
+});
+
+enyo.kind({
+	name: "Header",
+	// kind: "FittableRows",
+	// fit: true,
+	components:[
+		{kind: "onyx.Toolbar",classes:"onyx-light", components: [
+			{content: "Exámenes", classes:"titulo"},
+			// {kind: "mochi.Button", content: "Exámenes", ontap: "helloWorldTap", name:"boton1", onmouseover:"over", onmouseout:"out", attributes: {href:"http://localhost:8888/larapro/public/home",onclick:"window.location = 'http://localhost:8888/larapro/public/home'", target:"_new"}}
+		]},
+		// {kind: "enyo.Scroller", fit: true,classes:"nice-padding" ,components: [
+		// 	{name: "main", classes: "nice-padding", allowHtml: true},
+		// 	{kind: "Formulario"}
+
+		// ]},
+		// {kind: "onyx.Toolbar", layoutKind: "FittableColumnsLayout", style:"text-align:right; font-size:12px;",components:[
+		// 		{content: "Trabajo de AE", classes:"quote"}
+		// ]},
+	],
+	create: function () {
+			this.inherited(arguments);
+	},
+	// helloWorldTap: function(inSender, inEvent) {
+	// 	this.$.main.addContent("The button was tapped.<br/>");
+	// },
+	// over: function(inSender, inEvent){
+	// 	// console.log(inSender);
+	// 	inSender.addClass("active");
+	// 	// this.$.boton1.active=true;
+	// },
+	// out: function(inSender, inEvent){
+	// 	inSender.removeClass("active");
+	// }
 });

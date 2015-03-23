@@ -3,7 +3,8 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+// use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Http\Controllers\Auth\ComprobarLogin;
 
 class AuthController extends Controller {
 
@@ -18,7 +19,8 @@ class AuthController extends Controller {
 	|
 	*/
 
-	use AuthenticatesAndRegistersUsers;
+	// use AuthenticatesAndRegistersUsers;
+	use ComprobarLogin;
 
 	/**
 	 * Create a new authentication controller instance.

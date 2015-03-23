@@ -11,9 +11,14 @@ enyo.kind({
 });
 
 enyo.kind({
-	name: "myapp.Application1",
+	name: "myapp.Application2",
 	kind: "enyo.Application",
 	view: "ButtoMochi"
+});
+enyo.kind({
+	name: "myapp.Application1",
+	kind: "enyo.Application",
+	view: "Header"
 });
 // enyo.ready(function () {
 // 	new myapp.Application({name: "app"});
