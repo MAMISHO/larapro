@@ -144,6 +144,7 @@ trait ComprobarLogin {
 				\Session::put('miSession', \Input::get('clave'));
 				\Session::put('miSession', \Input::get('usuario'));
 				// return view('home', array('usuario'=>$usuario));
+				// return "correcto";
 				return redirect($this->homePath());
 
 			}
