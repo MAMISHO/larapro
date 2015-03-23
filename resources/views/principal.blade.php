@@ -53,25 +53,12 @@
 			}
 		</style>
 	</head>
-	<body class="nice-padding">
-		<input type="hidden" name="token" value="{{ csrf_token() }}">
-		@if (count($errors) > 0)
-		<input type="hidden" class="form-control" name="usuario_ant" value="{{ old('usuario_ant') }}">
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul id="errores">
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-		@endif
+	<body>
 		<script type="text/javascript">
 				// enyo.ready(function () {
 					new myapp.Application({name: "app"});
 				// });
 		</script>
-		
 		<!-- <div class="container">
 			<div class="content">
 				<div class="title">Principal</div>

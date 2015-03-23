@@ -23,6 +23,8 @@ class Authenticate {
 	public function __construct(Guard $auth)
 	{
 		//$this->auth = $auth;
+
+
 	}
 
 	// public function __construct(Request $request){
@@ -66,6 +68,7 @@ class Authenticate {
 				return redirect()->guest('auth/login');
 			}
 		}
+
 		return $next($request);
 	}
 

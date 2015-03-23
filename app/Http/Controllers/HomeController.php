@@ -1,7 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 class HomeController extends Controller {
 
 	/*
@@ -32,17 +30,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		if(\Session::get('miSession')){
-			return view('home');	
-		}
-		return redirect($this->loginPath());
-		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
-	}
-
-	public function loginPath()
-	{
-		// return property_exists($this, 'loginPath') ? $this->loginPath : '/auth/login';
-		return property_exists($this, 'loginPath') ? $this->loginPath : '/';
+		return view('home');
 	}
 
 }

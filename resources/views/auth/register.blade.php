@@ -22,44 +22,30 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Nombre</label>
+							<label class="col-md-4 control-label">Name</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="nombre" value="{{ old('name') }}">
+								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Apellidos</label>
+							<label class="col-md-4 control-label">E-Mail Address</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}">
+								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">DNI</label>
+							<label class="col-md-4 control-label">Password</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="dni" value="{{ old('dni') }}">
+								<input type="password" class="form-control" name="password">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Usuario</label>
+							<label class="col-md-4 control-label">Confirm Password</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="usuario" value="{{ old('email') }}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Contraseña</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="clave">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Confirmar contraseña</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="clave_confirmacion">
+								<input type="password" class="form-control" name="password_confirmation">
 							</div>
 						</div>
 
