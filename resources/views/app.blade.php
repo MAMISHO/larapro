@@ -8,9 +8,12 @@
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
+	<!-- scripts -->
+	<script src="{{ asset('../resources/assets/ae/enyo/enyo.js') }}" charset="utf-8"></script>
+	<script src="{{ asset('../resources/assets/ae/source/package.js') }}" charset="utf-8"></script>
 	<!-- Fonts -->
-	<script src="../../resources/assets/ae/enyo/enyo.js" charset="utf-8"></script>
-	<script src="../../resources/assets/ae/source/package.js" charset="utf-8"></script>
+	<!-- // <script src="../../resources/assets/ae/enyo/enyo.js" charset="utf-8"></script> -->
+	<!-- // <script src="../../resources/assets/ae/source/package.js" charset="utf-8"></script> -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,6 +22,7 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
 </head>
 <body>
 	<nav class="onyx onyx-toolbar onyx-toolbar-inline onyx-light">
@@ -43,6 +47,22 @@
 						<li><a href="{{ url('/') }}">Login</a></li>
 						<!-- <li><a href="{{ url('/auth/register') }}">Register</a></li> -->
 					@else
+						<!-- <nav>
+				            <ul class="fancyNav"> -->
+				                <li id="op1"><a href="#home" class="homeIcon">Nuevo examen</a></li>
+				             <!--    <li id="op2"><a href="#news">Opciones</a></li>
+				                <li id="op3"><a href="#about">About us</a></li>
+				                <li id="op4"><a href="#services">Services</a></li>
+				                <li id="op5"><a href="#contact">Tabla de claves</a></li> -->
+				                <li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Trajeta de claves <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="{{ url('/tablaClaves/ver') }}">Ver</a></li>
+										<li><a href="{{ url('/tablaClaves/descargar') }}">Descargar</a></li>
+									</ul>
+								</li>
+				     <!--        </ul>
+				        </nav> -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="bienvenida">Bienvenido/a</span> {{ Session::get('miSession', 'usuario') }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">

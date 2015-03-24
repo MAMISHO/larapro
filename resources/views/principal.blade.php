@@ -13,9 +13,16 @@
 		<!-- Less.js (for client-side rendering of less stylesheets; comment to use pre-compiled CSS) -->
 		 <!-- <script src="../resources/assets/ae/enyo/tools/less.js"></script> -->
 		<!-- enyo (debug) -->
-		<script src="../resources/assets/ae/enyo/enyo.js" charset="utf-8"></script>
+
+
+		<!-- // <script src="../resources/assets/ae/enyo/enyo.js" charset="utf-8"></script> -->
 		<!-- application (debug) -->
-		<script src="../resources/assets/ae/source/package.js" charset="utf-8"></script>
+		<!-- // <script src="../resources/assets/ae/source/package.js" charset="utf-8"></script> -->
+
+			<script src="{{ asset('../resources/assets/ae/enyo/enyo.js') }}" charset="utf-8"></script>
+	<script src="{{ asset('../resources/assets/ae/source/package.js') }}" charset="utf-8"></script>
+		
+
 		<style>
 			body {
 				margin: 0;

@@ -16,6 +16,10 @@ Route::get('/', 'PrincipalController@index');
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/tablaClaves/descargar', 'TablaClavesController@descargar');
+
+Route::get('/tablaClaves/ver', 'TablaClavesController@index');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
