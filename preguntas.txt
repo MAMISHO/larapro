@@ -1,0 +1,220 @@
+3. ¿Quién mantiene actualizada la CRL?
+A. La Autoridad de Certificación.
+B. La Autoridad de Registro.
+C. La Autoridad de Revocación.
+D. Los poseedores de un certificado digital.
+
+4. ¿Qué tipo de certificado permite identificar una cualidad, estado o situación?
+A. Certificado de representante.
+B. Certificado de pertenencia a empresa.
+C. Certificado de atributo.
+D. Certificado mixto.
+
+5. SSL proporciona...
+A. Autenticación y confidencialidad.
+B. Autenticación y no repudio.
+C. Autenticación, confidencialidad, integridad y no repudio.
+D. Autenticación, confidencialidad e integridad.
+
+6. Con respecto a los subprotocolos de TLS/SSL:
+A. Record encapsula el tráfico.
+B. Handshake se encarga únicamente de la autenticación.
+C. Change Cipher Spec cambia a modo cifrado.
+D. Todas las respuestas anteriores son correctas.
+
+7. Señale la afirmación FALSA con respecto a TLS/SSL...
+A. El cliente siempre envía su certificado.
+B. El servidor siempre envía su certificado.
+C. Conexiones posteriores del mismo cliente reusarán la sesión existente y se establecerán más rápidamente.
+D. La sesión se reinicia cuando se reinicia el servidor o el cliente.
+
+8. ¿Cuál es la Ley de Firma Electrónica?
+A. Ley59/2003.
+B. Ley11/2007.
+C. Ley59/1999.
+D. Ley15/1999.
+
+9. Un certificado digital se corresponde, siendo precisos, con:
+A. Firma electrónica.
+B. Firma electrónica avanzada.
+C. Firma electrónica reconocida.
+D. Firma electrónica regulada.
+
+10. "Aquella dirección electrónica disponible para los ciudadanos a través de redes de telecomunicaciones cuya titularidad, gestión y administración corresponde a una Administració Pública, órgano o entidad administrativa en el ejercicio de sus competencias". ¿Qué concepto estamos definiendo?
+A. Tablón de anuncios digital.
+B. Certificado digital del organismo.
+C. Sedeelectrónica.
+D. Ninguna de las anteriores.
+
+11. ¿Qué ley determina el contexto de agentes y servicios que conforman el nuevo modelo de Administración al que se pretende llegar, y que como podemos deducir, y en materia de identidad digital, se asienta sobre la LFE?
+A. Ley11/2003.
+B. Ley15/1999.
+C. Ley7/2011.
+D. Ley11/2007.
+
+12.Una "actuación administrativa producida por un sistema de información adecuadamente programado sin necesidad de intervención de una persona física en cada caso singular" se denomina, según la LAECSP:
+A. Actuación administrativa automatizada.
+B. Actuación administrativa directa. C. Actuación administrativa mejorada. D. Actuación administrativa anónima.
+
+13. ¿Qué instrumento se puede emplear para asegurar la validez de un documento impreso?
+A. Sello de órgano.
+B. Código seguro de verificación.
+C. A y B son correctas.
+D. Ninguna de las respuestas es correcta.
+
+14. Las administraciones públicas admiten sistemas de firma electrónica conforme a lo dispuesto por la LFE. ¿Cuáles de los siguientes son válidos?
+A. DNIe, para personas físicas.
+B. Certificadosdigitales.
+C. Otros sistemas como, por ejemplo, claves concertadas.
+D. Todas las anteriores son correctas.
+
+15. El
+A. Ley59/2003.
+B. Real Decreto 1553/2005.
+C. Real Decreto 1586/2009.
+D. Todas las anteriores son correctas.
+DNI electrónico viene regulado por.
+
+16. El uso por parte de la Administración de estándares abiertos así como, en su caso y de forma complementaria, de estándares que sean de uso generalizado por los ciudadanos, ¿es uno de los principios de la administración electrónica?
+A. Sí, es el principio de neutralidad tecnológica.
+B. Sí, es el principio de simplificación administrativa.
+C. Sí, es el principio de accesibilidad.
+D. No, la ley 11/2007 no recoge expresamente este principio.
+
+17. La publicación de actos y comunicaciones en tablón de anuncios electrónico,...
+A. Puede complementar al tablón de anuncios presencial, pero no sustituirlo.
+B. Puede sustituir o complementar al tablón de anuncios presencial.
+C. No se recomienda.
+D. No es un concepto recogido por la Ley 11/2007.
+18. ¿Qué formato de firma es el más apropiado para la firma longeva de los siguientes?
+A. XAdES-A. B. XAdES-T. C. XAdES-X. D. XAdES-C.
+
+19. ¿Qué formato de firma es el más apropiado para su entrega a usuarios?
+A. XAdES.
+B. CAdES.
+C. PAdES.
+D. No existen ventajas en optar por un formato u otro.
+
+20. ¿Cuál de los siguientes formatos utilizaría para firma longeva? A. XAdES-C.
+B. PAdES-LTV.
+C. EPES Profile.
+D. Ninguno de los anteriores.
+
+21. Con respecto al formato CAdES-T.
+A. Es utilizado por PAdES-BES Profile.
+B. Incluye información de sellado de tiempo. C. A y B son correctas.
+D. A y B son falsas.
+
+22. ¿Cuáles de las siguientes enumeraciones incluye un elemento extraño? A. Firma en lote; Firma Desatendida; Multifirma.
+B. Firma Centralizada; Firma digitalizada; Multifirma de lotes.
+C. Firma en lote; Multifirma; Multifirma de lotes.
+D. Firma en lote; Firma detached; Firma Desatendida.
+
+23. ¿Cuál de las siguientes NO es una opción para la generación del recibo de firma
+de un documento firmado?
+A. QR Code.
+B. Código de barras UCC128.
+C. Generación de un cajetín de firma.
+D. Permalink al perfil del usuario en la aplicación.
+
+24.¿Es posible la supresión de la necesidad de aportar cualquier documento acreditativo en los procedimientos administrativos (SCSP)?
+A. Sí, si es de manera automatizada.
+B. Sí, basta con que el ciudadano lo autorice.
+C. No, queda restringido a identidad y datos de residencia.
+D. Ninguna de las respuestas anteriores es correcta.
+
+25. ¿Cuál de las siguientes es una plataforma para el uso de certificados digitales de uso generalizado en la Administración Pública española?
+A. @firma.
+B. Afirm@.
+C. E-firma.
+D. Ninguna de las anteriores es correcta.
+
+26. La plataforma indicada en la pregunta anterior tiene un software que se ejecuta en cliente llamado Cliente de Firma. ¿Cuál es la afirmación FALSA?
+A. Existe una versión ligera del cliente llamada miniapplet del cliente de firma.
+B. El miniapplet del cliente de firma está desarrollado íntegramente en
+javascript para hacerlo más ligero.
+C. El Cliente de firma es un applet Java.
+D. El miniapplet de firma permite acceder a la clave privada asociada al
+certificado del cliente.
+
+27. La notificación electrónica se puede practicar mediante...
+A. Un correo electrónico ordinario.
+B. Una aplicación web que registre el acceso a una página determinada.
+C. Una aplicación web que registre el acceso a una página determinada, siempre
+que la identificación sea mediante certificado digital.
+D. Ninguna de las anteriores.
+
+28. ¿En qué contexto puede encontrar el Número de Referencia Completo (NRC)?
+A. Notificación electrónica.
+B. Registro electrónico.
+C. Firmaelectrónica.
+D. Pago electrónico.
+
+29. ¿Cómo se conoce a la firma múltiple en la que cada firma refrenda a la firma anterior?
+A. Cofirma.
+B. Multifirma.
+C. Contrafirma.
+D. Ninguna de las anteriores.
+
+30.La definición "Información de cualquier naturaleza en forma electrónica, archivada en un soporte electrónico según un formato determinado y susceptible de identificación y tratamiento diferenciado" se corresponde con:
+A. Documento electrónico.
+B. Compulsa electrónica. C. Factura electrónica.
+D. Expediente electrónico.
+
+31. La identificación mediante funcionario público...
+A. Es una forma reconocida de identificación de los ciudadanos.
+B. Requiere que el ciudadano y el funcionario cuenten con certificado digital. C. Se puede usar en cualquier circunstancia.
+D. Todas las anteriores son correctas.
+
+32. Son características del Código Seguro de Verificación:
+A. El carácter único del código generado para cada documento.
+B. Su vinculación con el documento generado y con el firmante.
+C. Se debe garantizar la posibilidad de verificar el documento por el tiempo que se establezca en la resolución que autorice la aplicación de este procedimiento. D. Todas las anteriores.
+
+33. El Registro General de Protección de Datos contiene:
+A. La estructura y los datos de los ficheros de datos de carácter personal que han sido declarados.
+B. La estructura de los ficheros de datos de carácter personal que han sido declarados.
+C. El listado de los ficheros de datos de carácter personal que han sido declarados.
+D. La estructura de los ficheros de datos de carácter personal que han sido declarados por las administraciones públicas.
+
+34. Todos los datos de carácter personal recogidos deben cumplir... A. Principio del consentimiento del afectado.
+B. Principio de información.
+C. Principio de calidad de los datos.
+D. Todas las respuestas anteriores son correctas.
+
+35. ¿Qué significan los derechos ARCO?
+A. Acceso, rectificación, cancelación y oposición.
+B. Acceso, revisión, cancelación y oposición.
+C. Anonimización, rectificación, cancelación y oposición.
+D. Acceso, rectificación, cancelación y ofuscación.
+
+36. La Protección de Datos de Carácter Personal viene regulada en:
+A. Ley 15/1999.
+B. R.D. 1720/2007.
+C. A y B.
+D. Ley 15/1999 y 34/2001.
+
+37. El Esquema Nacional de Seguridad viene regulado en: 
+A. R.D. 3/2010.
+B. R.D. 3/2011.
+C. R.D. 4/2010.
+D. R.D. 4/2011.
+
+
+38. El Esquema Nacional de Seguridad recoge:
+A. Medidas relacionadas con la organización global de la seguridad.
+B. Medidas para proteger la operación del sistema como conjunto integral de componentes para un fin.
+C. Protección de activos concretos, según su naturaleza y la calidad exigida por el nivel de seguridad de las dimensiones afectadas. 
+D. Todas las respuestas anteriores son correctas.
+
+39. Las Dimensiones de Seguridad recogidas en el ENS son:
+A. Disponibilidad. Trazabilidad. Autenticidad. Integridad. Confidencialidad.
+B. Disponibilidad. Trazabilidad. Autenticidad. Neutralidad. Integridad. Confidencialidad.
+C. Disponibilidad. Autenticidad. Integridad. Confidencialidad. Legalidad.
+D. Disponibilidad. Trazabilidad. Accesibilidad. Integridad. Confidencialidad..
+
+40. El Esquema Nacional de Interoperabilidad viene regulado en:
+A. R.D. 4/2011.
+B. R.D. 3/2010.
+C. R.D. 4/2012.
+D. R.D. 4/2010.

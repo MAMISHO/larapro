@@ -16,9 +16,10 @@ class CreateQuestionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('pregunta');
-			$table->string('respuesta1');
-			$table->string('respuesta2');
-			$table->string('respuesta3');
+			$table->string('resp_a');
+			$table->string('resp_b');
+			$table->string('resp_c');
+			$table->string('resp_d');
 			$table->string('correcta');
 
 			$table->integer('examen_id')->unsigned();
