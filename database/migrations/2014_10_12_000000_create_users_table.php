@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->string('usuario');
 			$table->string('matriz');
 			$table->string('clave');
+			$table->string('tipo');
 			$table->rememberToken();
 			$table->timestamps();
 		});
