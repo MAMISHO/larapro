@@ -16,25 +16,37 @@
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-book fa-3x"> &nbsp;Examenes Disponibles</i> 
+					<i class="fa fa-book fa-2x"> &nbsp;Exámenes Disponibles</i> 
 				</div>
 
 				<div class="panel-body">
 					@if (Session::get('miSession'))
-						<li class="examen_lista"> {{ $examenes[0]['usuario_id'] }} </li>
+						
 						<div class="flexcontainer">
+						@foreach ($examenes as $examen)
 							<div>
-								<div class="examen_titulo"></div>
-								<div class="examen_imagen"></div>
-								<div class="examen_puntos"></div>
-								<div class="examen_disponible"></div>
-								<div class="examen_boton"></div>
+								<div class="examen_titulo">
+									<h2>{{ $examen['examen_codigo'] }}</h2>
+								</div>
+								<div class="examen_imagen">
+									<i class="fa fa-list-alt fa-5x"></i>
+								</div>
+								<div class="examen_descripcion">
+									<p>Examen de la asignatura de {{ $examen['examen_nombre'] }}</p>
+								</div>
+								<div class="examen_puntos">
+									<p>Puntos posibles: </p>
+								</div>
+								<div class="examen_boton">
+								<form action="{{ url('/home/examen') }}" method="POST">
+									<input style="color: white;" type="submit" class="onyx-button onyx-blue" id="{{ $examen['examen_id'] }}" value="Realizar"></input>
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								</form>
+									
+									<!-- <h3>Realizar</h3> -->
+								</div>
 							</div>
-							<div>hola</div>
-							<div>hola</div>
-							<div>hola</div>
-							<div>hola</div>
-							<div>hola</div>
+						@endforeach
 						</div>
 					@else
 						You are logged in!

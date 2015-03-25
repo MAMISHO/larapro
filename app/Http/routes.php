@@ -15,6 +15,12 @@
 Route::get('/', 'PrincipalController@index');
 
 Route::get('/home', 'HomeController@index');
+Route::post('/home/examen', 'HomeController@nuevoExamen');
+
+// Route::post('/home/examen', array('before' => 'csrf', function()
+// {
+//     return 'You gave a valid CSRF token!';
+// }));
 
 Route::get('/tablaClaves/descargar', 'TablaClavesController@descargar');
 

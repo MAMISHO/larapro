@@ -35,8 +35,21 @@ class HomeController extends Controller {
 		if(\Session::get('miSession')){
 			$examenes = $this->getExamenes();
 			// dd($examenes);
+			// dd(csrf_token());
 
 			return view('home', array('examenes'=>$examenes));	
+		}
+		return redirect($this->loginPath());
+		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
+	}
+
+	public function nuevoExamen()
+	{
+		if(\Session::get('miSession')){
+			$examenes = $this->getExamenes();
+			// dd($examenes);
+
+			return view('examen', array('examenes'=>$examenes));	
 		}
 		return redirect($this->loginPath());
 		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
