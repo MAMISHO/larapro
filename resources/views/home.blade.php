@@ -15,10 +15,30 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">Home</div>
+				<div class="panel-heading">
+					<i class="fa fa-book fa-3x"> &nbsp;Examenes Disponibles</i> 
+				</div>
 
 				<div class="panel-body">
-					You are logged in! 					
+					@if (Session::get('miSession'))
+						<li class="examen_lista"> {{ $examenes[0]['usuario_id'] }} </li>
+						<div class="flexcontainer">
+							<div>
+								<div class="examen_titulo"></div>
+								<div class="examen_imagen"></div>
+								<div class="examen_puntos"></div>
+								<div class="examen_disponible"></div>
+								<div class="examen_boton"></div>
+							</div>
+							<div>hola</div>
+							<div>hola</div>
+							<div>hola</div>
+							<div>hola</div>
+							<div>hola</div>
+						</div>
+					@else
+						You are logged in!
+					@endif
 				</div>
 			</div>
 		</div>

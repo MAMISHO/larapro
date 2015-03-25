@@ -18,6 +18,7 @@ class CreateUsersTestsTable extends Migration {
 			$table->decimal('nota');
 			$table->string('resultado');
 			$table->string('estado');
+			$table->date('fecha');
 			
 
 			$table->integer('usuario_id')->unsigned();

@@ -34,9 +34,9 @@ class HomeController extends Controller {
 	{
 		if(\Session::get('miSession')){
 			$examenes = $this->getExamenes();
-			dd($examenes);
+			// dd($examenes);
 
-			return view('home');	
+			return view('home', array('examenes'=>$examenes));	
 		}
 		return redirect($this->loginPath());
 		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
@@ -58,6 +58,19 @@ class HomeController extends Controller {
 		$test = \DB::table('usuarios_examenes')
 			->join('examenes', 'usuarios_examenes.examen_id', '=', 'examenes.id')
             ->join('usuarios', 'usuarios_examenes.usuario_id', '=', 'usuarios.id')
+            ->select('usuarios.id as usuario_id',
+            		 'usuarios.nombre as usuario_nombre',
+            		 'usuarios.apellidos as usuario_apellidos',
+            		 'usuarios.dni as usuario_dni',
+            		 'usuarios.tipo as usuario_tipo',
+            		 'usuarios_examenes.id as usuarios_examenes_id',
+            		 'usuarios_examenes.nota as examen_nota',
+            		 'usuarios_examenes.resultado as examen_resultado',
+            		 'usuarios_examenes.estado as examen_estado',
+            		 'usuarios_examenes.fecha as examen_fecha',
+            		 'examenes.id as examen_id',
+            		 'examenes.nombre as examen_nombre',
+            		 'examenes.codigo as examen_codigo')
             ->where('usuarios.id',$user_data['id'])
             ->groupBy('usuarios_examenes.id')
             ->get();
