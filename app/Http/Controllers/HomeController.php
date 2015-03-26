@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends Controller {
@@ -43,16 +44,25 @@ class HomeController extends Controller {
 		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
 	}
 
-	public function nuevoExamen()
+	public function nuevoExamen(Request $request)
 	{
 		if(\Session::get('miSession')){
 			$examenes = $this->getExamenes();
-			// dd($examenes);
+			$preguntas = $this->getPreguntas($request);
+			$mytime = \Carbon\Carbon::now();
+			// dd($mytime);
+			// dd($preguntas);
 
-			return view('examen', array('examenes'=>$examenes));	
+			return view('examen', array('examenes'=>$examenes,'preguntas'=>$preguntas, 'fecha'=>$mytime));	
 		}
 		return redirect($this->loginPath());
 		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
+	}
+
+	public function calificarExamen(Request $request){
+		// explode(",", $fila);
+		$puntos = $this->comprobarRespuestas($request);
+		
 	}
 
 	public function loginPath()
@@ -109,6 +119,48 @@ class HomeController extends Controller {
 				$usuario     = get_object_vars($aux);
 			}
 			return $usuario;
+	}
+
+	private function getPreguntas(Request $request){
+		$this->validate($request, [
+				'examen' 	=> 'required',
+			]);
+		$query = \DB::table('preguntas')
+			->join('examenes', 'preguntas.examen_id', '=', 'examenes.id')
+			->select('preguntas.id as pregunta_id',
+					 'preguntas.pregunta',
+					 'preguntas.resp_a',
+					 'preguntas.resp_b',
+					 'preguntas.resp_c',
+					 'preguntas.resp_d',
+					 'preguntas.correcta')
+            ->where('examenes.id',$request['examen'])
+            // ->groupBy('examenes.id')
+            ->get();
+
+  //       dd($query);
+        $preguntas = null;
+		$cont =0;
+		foreach($query as &$aux) {
+			$preguntas[$cont]    = get_object_vars($aux);
+			$cont++;
 		}
+
+		return $preguntas;
+	}
+
+	private function comprobarRespuestas(Request $request){
+		$respuestas = null;
+		foreach ($request as $key => $req) {
+			$respuestas[$key] = $req;
+		}
+
+		$resp = $respuestas['request'];
+		foreach ($resp as $key => $req) {
+			$respu[$key] = $req;
+		}
+
+		dd($respu);
+	}
 
 }

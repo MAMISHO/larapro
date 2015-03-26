@@ -139,13 +139,214 @@
   width: 100%;
 }
 .examen_cell_fecha{
-  /*display: table-cell;*/
   text-align: right;
-  /*margin-left: 100%;*/
   width: 100%;
   position:relative;
   left:50%;
-  /*max-width: 100px;
-  position: relative;
-  left: 50%;*/
 }
+.examen_contain{
+  width: 100%;
+  height: auto;
+  display: table;
+/*  -webkit-box-shadow: inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+  -moz-box-shadow:    inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+  box-shadow:         inset 0px 3px 5px 2px rgba(50, 50, 50, 1);*/
+}
+.usuario_contain{
+  border-bottom: 50px;
+  width: auto;
+  display: table-row;
+  display: table;
+  -webkit-box-shadow: inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+  -moz-box-shadow:    inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+  box-shadow:         inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+}
+.examen_preguntas{
+  display: table-row;
+  width: 96%;
+  padding: 2%;
+  margin-top: 20px;
+}
+.usuario_datos{
+  /*width: 100%;*/
+  /*min-width: 500px;*/
+  padding: 20px;
+  /*height: 100%;*/
+  border: 2px solid #333;
+}
+.usuario_foto{
+  display: table-cell;
+  font-size: 20px;
+  padding-right: 30px;
+}
+.usuario_informacion{
+  padding-left: 30px;
+  border-left: 1px solid #333;
+  display: table-cell;
+}
+.usuario_informacion tr{
+  border-bottom: 1px double #333;
+}
+.etiqueta{
+  text-align: right;
+  padding-right: 15px;
+}
+.pregunta_contain{
+  width: 100%;
+  margin-top: 50px;
+  padding: 0;
+  /*background-color: red;*/
+  display: table;
+}
+.pregunta_header{
+  background-color: #333;
+  color:white;
+  /*border-top-left-radius: 10px;*/
+  border-top-right-radius: 10px;
+  /*width: 100%;*/
+  display: table-row;
+  display: table;
+}
+.pregunta_texto{
+  border: 2px solid #333;
+  padding: 20px;
+/*    padding: 4px;
+  margin: 3px;*/
+  /*border: 2px solid black;*/
+  /*background-color: red;*/
+
+  /*display: table-row;*/
+
+}
+.pregunta_respuesta{
+  /*display: table-row;*/
+  border-top: 1px solid #333;
+  padding: 10px; 
+}
+.pregunta_numero{
+  padding: 3px;
+  width: auto;
+  display: table-cell;
+}
+.pregunta_numero h3{
+  /*border-top-left-radius: 10px;*/
+  border-top-right-radius: 10px;
+  border: 2px solid #333;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+/*incia formulario*/
+
+  
+/* Hiding default checkbox and Radio button design */
+input[type=checkbox],input[type=radio] {
+    opacity: 0;
+    position: absolute;
+    z-index: 12;
+    width: 18px;
+    height: 18px;
+}
+ 
+/* Disable outline when clicked*/
+input[type=checkbox]:checked,input[type=radio]:checked,input[type=checkbox]:focus,input[type=radio]:focus {
+    outline: none !important;
+}
+ 
+input[type=checkbox]+.lbl,input[type=radio]+.lbl {
+    position: relative;
+    z-index: 11;
+    display: inline-block;
+    margin: 0;
+    line-height: 20px;
+    min-height: 14px;
+    min-width: 14px;
+    font-weight: normal;
+}
+
+
+
+input[type=checkbox]+.lbl.padding-16::before,input[type=radio]+.lbl.padding-16::before {
+    margin-right: 16px;
+}
+ 
+input[type=checkbox]+.lbl.padding-12::before,input[type=radio]+.lbl.padding-12::before {
+    margin-right: 12px;
+}
+ 
+input[type=checkbox]+.lbl.padding-8::before,input[type=radio]+.lbl.padding-8::before {
+    margin-right: 8px;
+}
+ 
+input[type=checkbox]+.lbl.padding-4::before,input[type=radio]+.lbl.padding-4::before {
+    margin-right: 4px;
+}
+ 
+input[type=checkbox]+.lbl.padding-0::before,input[type=radio]+.lbl.padding-0::before {
+    margin-right: 0px;
+}
+
+
+
+/* Basic Checkbox styles */
+input[type=checkbox]+.lbl::before,input[type=radio]+.lbl::before {
+  font-family: fontAwesome;
+  font-weight: normal;
+  font-size: 11px;
+  color: #2091cf;
+  content: "\a0";
+  background-color: #FAFAFA;
+  border: 1px solid #CCC;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  height: 13px;
+  line-height: 13px;
+  min-width: 13px;
+  margin-right: 1px;
+  margin-top: -5px;
+}
+ 
+/* Checked state styles */
+input[type=checkbox]:checked+.lbl::before,input[type=radio]:checked+.lbl::before {
+  display: inline-block;
+  content: '\f00c';
+  background-color: #F5F8FC;
+  border-color: #adb8c0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+}
+ 
+/* Hover state styles */
+input[type=checkbox]:hover+.lbl::before,input[type=radio]:hover+.lbl::before,input[type=checkbox]+.lbl:hover::before,input[type=radio]+.lbl:hover::before {
+  border-color: #1c7aad;
+}
+ 
+/* Shadow when checked or Active */
+input[type=checkbox]:active+.lbl::before,input[type=radio]:active+.lbl::before,input[type=checkbox]:checked:active+.lbl::before,input[type=radio]:checked:active+.lbl::before {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+ 
+/* Disabled state styles */
+input[type=checkbox]:disabled+.lbl::before,input[type=radio]:disabled+.lbl::before,input[type=checkbox][disabled]+.lbl::before,input[type=radio][disabled]+.lbl::before,input[type=checkbox].disabled+.lbl::before,input[type=radio].disabled+.lbl::before {
+  background-color: #DDD !important;
+  border-color: #CCC !important;
+  box-shadow: none !important;
+  color: #BBB;
+}
+ 
+/* Styles for Radio button */
+input[type=radio]+.lbl::before {
+  border-radius: 32px;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 36px;
+}
+ 
+input[type=radio]:checked+.lbl::before {
+  content: "\2022";
+}
+/*fin de formulario*/

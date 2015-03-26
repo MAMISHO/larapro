@@ -39,7 +39,8 @@
 								</div>
 								<div class="examen_boton">
 								<form action="{{ url('/home/examen') }}" method="POST">
-									<input style="color: white;" type="submit" class="onyx-button onyx-blue" id="{{ $examen['examen_id'] }}" value="Realizar"></input>
+									<input type="hidden" name="examen" value="{{ $examen['examen_id'] }}">
+									<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Realizar"></input>
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								</form>
 									
