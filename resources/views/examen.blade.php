@@ -109,7 +109,7 @@
 								</div>
 							</div>
 							@endforeach
-							<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Enviar"></input>
+							<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Finalizar examen"></input>
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 						</div>

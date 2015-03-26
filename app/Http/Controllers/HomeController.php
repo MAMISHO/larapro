@@ -50,6 +50,9 @@ class HomeController extends Controller {
 			$examenes = $this->getExamenes();
 			$preguntas = $this->getPreguntas($request);
 			$mytime = \Carbon\Carbon::now();
+			\Session::put('examen_actual', $request['examen']);
+			\Session::put('preguntas', $preguntas);
+			\Session::put('fecha', $mytime);
 			// dd($mytime);
 			// dd($preguntas);
 
@@ -60,9 +63,12 @@ class HomeController extends Controller {
 	}
 
 	public function calificarExamen(Request $request){
-		// explode(",", $fila);
-		$puntos = $this->comprobarRespuestas($request);
-		
+		if(\Session::get('miSession')){
+			//hay que añadir en la BBDD que el examen ya no esta disponible, con la fecha y puntaje
+			$resultados = $this->comprobarRespuestas($request);
+			return view('resultados', array('resultados'=>$resultados));	
+		}
+		return redirect($this->loginPath());
 	}
 
 	public function loginPath()
@@ -151,16 +157,68 @@ class HomeController extends Controller {
 
 	private function comprobarRespuestas(Request $request){
 		$respuestas = null;
+		$examen_actual = \Session::get('examen_actual');
+		$preguntas = \Session::get('preguntas');
+
+		//sacamos las respuestas del request
 		foreach ($request as $key => $req) {
 			$respuestas[$key] = $req;
 		}
 
+		//Pasamos las respuestas a un array de claves 'respuestas_n' => 'resp_n'
 		$resp = $respuestas['request'];
 		foreach ($resp as $key => $req) {
 			$respu[$key] = $req;
 		}
 
-		dd($respu);
+		//sacamos las claves del array 'respuestas_n' para luego tratarlas
+		$claves = array_keys($respu);
+		$valores = array_values($respu);
+
+		//formamos una matriz de tipo 'indice','respuestas_n','n'
+		foreach ($claves as $key => $clave) {
+			$aux = explode("_", $clave);
+			if($aux[0]!=""){
+				$matrix[$key]['clave'] = $clave;
+				$matrix[$key]['codigo'] = $aux[1];
+				$matrix[$key]['respuesta'] = $valores[$key];
+			}
+		}
+
+		//tranformo la matriz de claves para hacer el cruce con la de respuestas
+		$respuestas_user = null;
+		foreach ($matrix as $key => $mat) {
+			$respuestas_user[$mat['codigo']] = $mat['respuesta']; 
+		}
+		
+		//asignamos las puntuaciones a las respuestas.
+		$puntuaciones = null;
+		foreach ($preguntas as $key => $pre) {
+			if(array_key_exists($pre['pregunta_id'], $respuestas_user)){
+				$puntuaciones[$key]['pregunta'] = $pre['pregunta'];
+				$puntuaciones[$key]['respuesta'] = $respuestas_user[$pre['pregunta_id']];
+				$puntuaciones[$key]['correcta'] = $pre['correcta'];
+				if($puntuaciones[$key]['respuesta'] == $puntuaciones[$key]['correcta']){
+					$puntuaciones[$key]['puntos'] = 1;
+					$puntuaciones[$key]['icon'] = "fa fa-check-circle verde";
+				}else{
+					$puntuaciones[$key]['puntos'] = round( -(1/3), 1, PHP_ROUND_HALF_DOWN);
+					$puntuaciones[$key]['icon'] = "fa fa-times-circle rojo";
+				}
+			}else{
+				$puntuaciones[$key]['pregunta'] = $pre['pregunta'];
+				$puntuaciones[$key]['respuesta'] = '--';
+				$puntuaciones[$key]['correcta'] = $pre['correcta'];
+				$puntuaciones[$key]['puntos'] = 0;
+				$puntuaciones[$key]['icon'] = "fa fa-minus-square";
+			}
+		}
+
+
+		// dd($respuestas_user);
+		//dd($preguntas);
+		// dd($puntuaciones);
+		return $puntuaciones;
 	}
 
 }
