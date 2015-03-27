@@ -65,8 +65,14 @@ class HomeController extends Controller {
 	public function calificarExamen(Request $request){
 		if(\Session::get('miSession')){
 			//hay que añadir en la BBDD que el examen ya no esta disponible, con la fecha y puntaje
+			$examenes = $this->getExamenes();
 			$resultados = $this->comprobarRespuestas($request);
-			return view('resultados', array('resultados'=>$resultados));	
+			$puntaje['puntos'] = \Session::get('puntos');
+			$puntaje['correctas'] = \Session::get('correctas');
+			$puntaje['incorrectas'] = \Session::get('incorrectas');
+			$puntaje['sin_responder'] = \Session::get('sin_responder');
+			$puntaje['fecha'] = \Carbon\Carbon::now();
+			return view('resultados', array('resultados'=>$resultados, 'puntaje'=>$puntaje, 'examenes'=>$examenes));	
 		}
 		return redirect($this->loginPath());
 	}
@@ -176,6 +182,7 @@ class HomeController extends Controller {
 		$valores = array_values($respu);
 
 		//formamos una matriz de tipo 'indice','respuestas_n','n'
+		$matrix = null;
 		foreach ($claves as $key => $clave) {
 			$aux = explode("_", $clave);
 			if($aux[0]!=""){
@@ -186,13 +193,20 @@ class HomeController extends Controller {
 		}
 
 		//tranformo la matriz de claves para hacer el cruce con la de respuestas
-		$respuestas_user = null;
-		foreach ($matrix as $key => $mat) {
-			$respuestas_user[$mat['codigo']] = $mat['respuesta']; 
-		}
+		$respuestas_user[] = null;
 		
+		if($matrix != null){
+			foreach ($matrix as $key => $mat) {
+				$respuestas_user[$mat['codigo']] = $mat['respuesta']; 
+			}
+		}
+		// dd('hola');
 		//asignamos las puntuaciones a las respuestas.
 		$puntuaciones = null;
+		$puntos = 0;
+		$correctas = 0;
+		$incorrectas = 0;
+		$sin_responder = 0;
 		foreach ($preguntas as $key => $pre) {
 			if(array_key_exists($pre['pregunta_id'], $respuestas_user)){
 				$puntuaciones[$key]['pregunta'] = $pre['pregunta'];
@@ -201,9 +215,11 @@ class HomeController extends Controller {
 				if($puntuaciones[$key]['respuesta'] == $puntuaciones[$key]['correcta']){
 					$puntuaciones[$key]['puntos'] = 1;
 					$puntuaciones[$key]['icon'] = "fa fa-check-circle verde";
+					$correctas++;
 				}else{
 					$puntuaciones[$key]['puntos'] = round( -(1/3), 1, PHP_ROUND_HALF_DOWN);
 					$puntuaciones[$key]['icon'] = "fa fa-times-circle rojo";
+					$incorrectas++;
 				}
 			}else{
 				$puntuaciones[$key]['pregunta'] = $pre['pregunta'];
@@ -211,13 +227,22 @@ class HomeController extends Controller {
 				$puntuaciones[$key]['correcta'] = $pre['correcta'];
 				$puntuaciones[$key]['puntos'] = 0;
 				$puntuaciones[$key]['icon'] = "fa fa-minus-square";
+				$sin_responder++;
 			}
+			$puntos = $puntos + $puntuaciones[$key]['puntos'];
 		}
 
 
 		// dd($respuestas_user);
 		//dd($preguntas);
 		// dd($puntuaciones);
+		if($puntos<0){
+			$puntos = 0;
+		}
+		\Session::put('puntos', $puntos);
+		\Session::put('correctas', $correctas);
+		\Session::put('incorrectas', $incorrectas);
+		\Session::put('sin_responder', $sin_responder);
 		return $puntuaciones;
 	}
 
