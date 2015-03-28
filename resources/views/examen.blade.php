@@ -57,57 +57,84 @@
 
 						<form action="{{ url('/home/examen/calificar') }}" method="POST">
 							@foreach($preguntas as $key => $pregunta)
-							<div class="pregunta_contain">
-								<div class="pregunta_header">
-									<div class="pregunta_numero">
-										<i class="fa fa-question-circle fa-2x">Pregunta {{$key+1}}</i>
+								@if(!$pregunta == null)
+									<div class="pregunta_contain">
+										<div class="pregunta_header">
+											<div class="pregunta_numero">
+												<i class="fa fa-question-circle fa-2x">Pregunta {{$key+1}}</i>
+											</div>
+										</div>
+										<div class="pregunta_texto">
+											<p>{{$pregunta['pregunta']}}</p>
+											<div class="pregunta_respuesta">
+												<p>
+													<label>
+													   <input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_a"/>
+													   <span class="lbl padding-8">A) {{$pregunta['resp_a']}}</span>
+													</label>
+												</p>
+												<p>
+													<label>
+												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_b"/>
+												   		<span class="lbl padding-8">B) {{$pregunta['resp_b']}}</span>
+													</label>
+												</p>
+												<p>
+													<label>
+												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_c"/>
+												   		<span class="lbl padding-8">C) {{$pregunta['resp_c']}}</span>
+													</label>
+												</p>
+												<p>
+													<label>
+												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_d"/>
+												   		<span class="lbl padding-8">D) {{$pregunta['resp_d']}}</span>
+													</label>
+												</p>
+
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="pregunta_texto">
-									<p>{{$pregunta['pregunta']}}</p>
-								<div class="pregunta_respuesta">
-									<p>
-										<label>
-										   <input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_a"/>
-										   <span class="lbl padding-8">A) {{$pregunta['resp_a']}}</span>
-										</label>
-									</p>
-									<p>
-										<label>
-									   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_b"/>
-									   		<span class="lbl padding-8">B) {{$pregunta['resp_b']}}</span>
-										</label>
-									</p>
-									<p>
-										<label>
-									   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_c"/>
-									   		<span class="lbl padding-8">C) {{$pregunta['resp_c']}}</span>
-										</label>
-									</p>
-									<p>
-										<label>
-									   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_d"/>
-									   		<span class="lbl padding-8">D) {{$pregunta['resp_d']}}</span>
-										</label>
-									</p>
-									<!-- Checkbox -->
-									<!-- <label>
-									   <input type="checkbox" />
-									   <span class="lbl padding-8">Label Here</span>
-									</label>
-									<label>
-									   <input type="checkbox" />
-									   <span class="lbl padding-16">Label Here</span>
-									</label> -->
-									 
-									<!-- Radio Button -->
-									<!-- <label>
-									   <input type="radio" />
-									   <span class="lbl padding-8">Label Here</span>
-									</label> -->
-								</div>
-								</div>
-							</div>
+								@else
+									<div class="pregunta_contain">
+										<div class="pregunta_header">
+											<div class="pregunta_numero">
+												<i class="fa fa-question-circle fa-2x">No hay preguntas</i>
+											</div>
+										</div>
+										<div class="pregunta_texto">
+										<p>EL examen no tiene preguntas asignadas</p>
+											<!-- <p>{{$pregunta['pregunta']}}</p> -->
+<!-- 											<div class="pregunta_respuesta">
+												<p>
+													<label>
+													   <input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_a"/>
+													   <span class="lbl padding-8">A) {{$pregunta['resp_a']}}</span>
+													</label>
+												</p>
+												<p>
+													<label>
+												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_b"/>
+												   		<span class="lbl padding-8">B) {{$pregunta['resp_b']}}</span>
+													</label>
+												</p>
+												<p>
+													<label>
+												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_c"/>
+												   		<span class="lbl padding-8">C) {{$pregunta['resp_c']}}</span>
+													</label>
+												</p>
+												<p>
+													<label>
+												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_d"/>
+												   		<span class="lbl padding-8">D) {{$pregunta['resp_d']}}</span>
+													</label>
+												</p>
+
+											</div> -->
+										</div>
+									</div>
+								@endif
 							@endforeach
 							<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Finalizar examen"></input>
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">

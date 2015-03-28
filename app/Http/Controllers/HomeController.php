@@ -56,6 +56,10 @@ class HomeController extends Controller {
 			// dd($mytime);
 			// dd($preguntas);
 
+			// if($preguntas[0]==null){
+			// 	$preguntas[0]="No existen preguntas para el examen";
+			// }
+
 			return view('examen', array('examenes'=>$examenes,'preguntas'=>$preguntas, 'fecha'=>$mytime));	
 		}
 		return redirect($this->loginPath());
@@ -150,7 +154,12 @@ class HomeController extends Controller {
             // ->groupBy('examenes.id')
             ->get();
 
-  //       dd($query);
+        
+        // dd($aleatorias);
+        // dd(sizeof($query));
+        // dd($query);
+
+         //Normalizamos la preguntas
         $preguntas = null;
 		$cont =0;
 		foreach($query as &$aux) {
@@ -158,7 +167,28 @@ class HomeController extends Controller {
 			$cont++;
 		}
 
-		return $preguntas;
+
+		//Tomamos solo 10 preguntas aleatorias
+		$aleatorias[] = 0;
+		$ind =0;
+		if(sizeof($query)>=10){
+	        while(sizeof($aleatorias)<10){
+	        	$num = rand(0, sizeof($query)-1);
+	        	if(!in_array($num, $aleatorias)){
+	        		$aleatorias[$ind] = $num;
+	        		$ind++;
+	        	}
+	        }
+	    }
+
+        $preguntas_finales = null;
+        foreach ($aleatorias as $key => $indice) {
+        	$preguntas_finales[$key] = $preguntas[$indice];
+        }
+
+        // dd($preguntas);
+        // dd($preguntas_finales);
+		return $preguntas_finales;
 	}
 
 	private function comprobarRespuestas(Request $request){

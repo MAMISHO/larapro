@@ -49,7 +49,7 @@
 					@else
 						<!-- <nav>
 				            <ul class="fancyNav"> -->
-				                <li id="op1"><a href="#home" class="homeIcon">Nuevo examen</a></li>
+				                <li id="op1"><a href="{{ url('/home') }}" class="homeIcon">Nuevo examen</a></li>
 				             <!--    <li id="op2"><a href="#news">Opciones</a></li>
 				                <li id="op3"><a href="#about">About us</a></li>
 				                <li id="op4"><a href="#services">Services</a></li>
