@@ -34,7 +34,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button> -->
-				<a class="navbar-brand titulo" href="#">Exámenes</a>
+				<a class="navbar-brand titulo" href="{{ url('/home') }}">Exámenes</a>
 			</div>
 
 			<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
@@ -49,7 +49,11 @@
 					@else
 						<!-- <nav>
 				            <ul class="fancyNav"> -->
+				            @if (Session::get('tipo_usuario')=="administrador")
+				            	<li id="op1"><a href="{{ url('/home') }}" class="homeIcon">Crear examen</a></li>
+				            @else
 				                <li id="op1"><a href="{{ url('/home') }}" class="homeIcon">Nuevo examen</a></li>
+				            @endif
 				             <!--    <li id="op2"><a href="#news">Opciones</a></li>
 				                <li id="op3"><a href="#about">About us</a></li>
 				                <li id="op4"><a href="#services">Services</a></li>

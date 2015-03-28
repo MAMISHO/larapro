@@ -15,6 +15,7 @@
 Route::get('/', 'PrincipalController@index');
 
 Route::get('/home', 'HomeController@index');
+// Route::get('/administrator', 'HomeController@index');
 Route::post('/home/examen', 'HomeController@nuevoExamen');
 Route::post('/home/examen/calificar', 'HomeController@calificarExamen');
 

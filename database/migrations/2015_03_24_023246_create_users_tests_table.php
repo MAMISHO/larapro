@@ -19,6 +19,9 @@ class CreateUsersTestsTable extends Migration {
 			$table->string('resultado');
 			$table->string('estado');
 			$table->date('fecha');
+			$table->integer('correctas');
+			$table->integer('incorrectas');
+			$table->integer('sin_responder');
 			
 
 			$table->integer('usuario_id')->unsigned();

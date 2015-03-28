@@ -131,13 +131,13 @@ trait ComprobarLogin {
 		$aux;
 		$usuario = null;
 		$clave = null;
-		// $tipo_login = null;
+		$tipo = null;
 		foreach($user as &$aux) {
 			$aux     = get_object_vars($aux);
 			$usuario = $aux['usuario'];
 			$clave 	 = $aux['clave'];
 			$matriz  = $aux['matriz'] ;
-			// $tipo_login = $aux['tipo_login'];
+			$tipo = $aux['tipo'];
 		}
 		
 
@@ -163,7 +163,11 @@ trait ComprobarLogin {
 					$str = strtoupper(\Input::get('usuario'));
 					\Session::put('miSession', \Input::get('clave'));
 					\Session::put('miSession', $str);
+					\Session::put('tipo_usuario', $tipo);
 					
+					// if($tipo == "administrador"){
+					// 	return redirect($this->administradorPath());
+					// }
 					return redirect($this->homePath());
 
 				}
@@ -179,10 +183,14 @@ trait ComprobarLogin {
 				$str = strtoupper(\Input::get('usuario'));
 				\Session::put('miSession', \Input::get('clave'));
 				\Session::put('miSession', $str);
+				\Session::put('tipo_usuario', $tipo);
 				// return view('home', array('usuario'=>$usuario));
 				
 				// return $credentials;
 				
+				// if($tipo == "administrador"){
+				// 		return redirect($this->administradorPath());
+				// }
 				return redirect($this->homePath());
 
 			}
@@ -243,6 +251,12 @@ trait ComprobarLogin {
 		// return property_exists($this, 'loginPath') ? $this->loginPath : '/auth/login';
 		return property_exists($this, 'homePath') ? '/home' : '/home';
 	}
+
+	// public function administradorPath()
+	// {
+	// 	// return property_exists($this, 'loginPath') ? $this->loginPath : '/auth/login';
+	// 	return property_exists($this, 'administradorPath') ? '/administrador' : '/administrador';
+	// }
 
 	public function loginPath()
 	{

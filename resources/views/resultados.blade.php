@@ -164,6 +164,8 @@
 										</tr>
 									</table>
 								</div>
+								<br />
+								<a style="color: white;" type="button" class="onyx-button onyx-blue" href="{{ url('/home') }}" value="Terminar">Finalizar</a>
 							</div>
 						</div>
 					</div>

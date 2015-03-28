@@ -4,6 +4,40 @@
 <div class="header">
 	<script type="text/javascript">
 
+		// var t=setTimeout(finExamen,360*1000); // finExamen se ejecutara cuando se acabe 
+		// //el tiempo y 3600*1000 es para una hora 
+		// function finExamen(){ 
+		// 	document.formulario.submit();
+		// }
+		horas = 00;
+		minutos = 0;
+		segundos = 10;
+
+		function muestraReloj() {
+		    if (segundos === 0){
+		    	if(minutos>0){
+		    		segundos=59; 
+		    		minutos--;	
+		    	}else{
+		    		alert("Tiempo finalizado, el examen será enviado");
+		    		document.formulario.submit();
+		    	}
+		    }
+		    // if (minutos === 0){
+		    // 	minutos=59; horas--;
+		    // }
+		    
+		    var string = "";
+		    string += horas +':'+ minutos + ':'+ segundos;
+		    document.getElementById("reloj").innerHTML = string;
+		    
+		    segundos --;
+		}
+		 
+		window.onload = function() {
+		  setInterval(muestraReloj, 1000);
+		}
+
 	</script>
 </div>
 
@@ -24,6 +58,10 @@
 								<div class="examen_cell_fecha">
 									<h3>Fecha : {{ $fecha->format('d-m-Y') }} </h3>
 								</div>	
+								<div class="examen_cell_fecha">
+									<h4>Tiempo para finalizar <span id="reloj" style="color:#337ab7"></span></h4>
+									<!-- <div id="reloj"></div> -->
+								</div>
 							</div>
 						</div>
 					</div>
@@ -55,7 +93,7 @@
 						</div>
 						<div class="examen_preguntas">
 
-						<form action="{{ url('/home/examen/calificar') }}" method="POST">
+						<form action="{{ url('/home/examen/calificar') }}" method="POST" name="formulario">
 							@foreach($preguntas as $key => $pregunta)
 								@if(!$pregunta == null)
 									<div class="pregunta_contain">
@@ -104,40 +142,18 @@
 										</div>
 										<div class="pregunta_texto">
 										<p>EL examen no tiene preguntas asignadas</p>
-											<!-- <p>{{$pregunta['pregunta']}}</p> -->
-<!-- 											<div class="pregunta_respuesta">
-												<p>
-													<label>
-													   <input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_a"/>
-													   <span class="lbl padding-8">A) {{$pregunta['resp_a']}}</span>
-													</label>
-												</p>
-												<p>
-													<label>
-												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_b"/>
-												   		<span class="lbl padding-8">B) {{$pregunta['resp_b']}}</span>
-													</label>
-												</p>
-												<p>
-													<label>
-												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_c"/>
-												   		<span class="lbl padding-8">C) {{$pregunta['resp_c']}}</span>
-													</label>
-												</p>
-												<p>
-													<label>
-												   		<input type="radio" name="respuesta_{{ $pregunta['pregunta_id'] }}" value="resp_d"/>
-												   		<span class="lbl padding-8">D) {{$pregunta['resp_d']}}</span>
-													</label>
-												</p>
-
-											</div> -->
 										</div>
 									</div>
 								@endif
 							@endforeach
-							<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Finalizar examen"></input>
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<br />
+							@if($preguntas[0]==null)
+								<a style="color: white;" type="button" class="onyx-button onyx-blue" href="{{ url('/home') }}" value="Regresar">Regresar</a>
+							@else
+								<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Finalizar examen"></input>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							@endif
+							
 						</form>
 						</div>
 					</div>

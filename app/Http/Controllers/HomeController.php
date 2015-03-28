@@ -37,7 +37,9 @@ class HomeController extends Controller {
 			$examenes = $this->getExamenes();
 			// dd($examenes);
 			// dd(csrf_token());
-
+			if(\Session::get('tipo_usuario')=="administrador"){
+				return view('administrador');	
+			}
 			return view('home', array('examenes'=>$examenes));	
 		}
 		return redirect($this->loginPath());
