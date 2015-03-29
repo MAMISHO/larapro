@@ -132,12 +132,16 @@ trait ComprobarLogin {
 		$usuario = null;
 		$clave = null;
 		$tipo = null;
+		$nombre = null;
+		$apellidos = null;
 		foreach($user as &$aux) {
 			$aux     = get_object_vars($aux);
 			$usuario = $aux['usuario'];
 			$clave 	 = $aux['clave'];
 			$matriz  = $aux['matriz'] ;
 			$tipo = $aux['tipo'];
+			$nombre = $aux['nombre'];
+			$apellidos = $aux['apellidos'];
 		}
 		
 
@@ -164,6 +168,8 @@ trait ComprobarLogin {
 					\Session::put('miSession', \Input::get('clave'));
 					\Session::put('miSession', $str);
 					\Session::put('tipo_usuario', $tipo);
+					\Session::put('nombre', $nombre);
+					\Session::put('apellidos', $apellidos);
 					
 					// if($tipo == "administrador"){
 					// 	return redirect($this->administradorPath());
@@ -184,6 +190,8 @@ trait ComprobarLogin {
 				\Session::put('miSession', \Input::get('clave'));
 				\Session::put('miSession', $str);
 				\Session::put('tipo_usuario', $tipo);
+				\Session::put('nombre', $nombre);
+				\Session::put('apellidos', $apellidos);
 				// return view('home', array('usuario'=>$usuario));
 				
 				// return $credentials;

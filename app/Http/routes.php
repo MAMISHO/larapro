@@ -18,6 +18,8 @@ Route::get('/home', 'HomeController@index');
 // Route::get('/administrator', 'HomeController@index');
 Route::post('/home/examen', 'HomeController@nuevoExamen');
 Route::post('/home/examen/calificar', 'HomeController@calificarExamen');
+Route::get('/crear/examen', 'HomeController@crearExamen');
+Route::post('/crear/nuevo/examen', 'HomeController@crearNuevoExamen');
 
 // Route::post('/home/examen', array('before' => 'csrf', function()
 // {

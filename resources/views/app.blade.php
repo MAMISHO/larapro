@@ -50,7 +50,7 @@
 						<!-- <nav>
 				            <ul class="fancyNav"> -->
 				            @if (Session::get('tipo_usuario')=="administrador")
-				            	<li id="op1"><a href="{{ url('/home') }}" class="homeIcon">Crear examen</a></li>
+				            	<li id="op1"><a href="{{ url('/crear/examen') }}" class="homeIcon">Crear examen</a></li>
 				            @else
 				                <li id="op1"><a href="{{ url('/home') }}" class="homeIcon">Nuevo examen</a></li>
 				            @endif
@@ -68,7 +68,7 @@
 				     <!--        </ul>
 				        </nav> -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="bienvenida">Bienvenido/a</span> {{ Session::get('miSession', 'usuario') }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="bienvenida">Bienvenido/a</span> {{ Session::get('nombre') }}&nbsp;{{ Session::get('apellidos') }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{ url('/auth/logout') }}">Salir</a></li>
 							</ul>

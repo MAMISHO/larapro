@@ -83,6 +83,29 @@ class HomeController extends Controller {
 		return redirect($this->loginPath());
 	}
 
+	public function crearExamen(){
+		if(\Session::get('miSession')){
+				return view('nuevoexamen');	
+		}
+		return redirect($this->loginPath());
+	}
+
+	public function crearNuevoExamen(Request $request){
+		if(\Session::get('miSession')){
+
+			$this->validate($request, [
+				'nombre' 	=> 'required',
+				'codigo'	=> 'required',
+			]);
+
+			$id = \DB::table('examenes')->insertGetId(
+    			['nombre' => $request['nombre'], 'codigo' => $request['codigo']]
+				);
+			return view('administrador');	
+		}
+		return redirect($this->loginPath());
+	}
+
 	public function loginPath()
 	{
 		// return property_exists($this, 'loginPath') ? $this->loginPath : '/auth/login';
