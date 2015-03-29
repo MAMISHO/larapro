@@ -16,37 +16,82 @@
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-book fa-2x"> &nbsp;Exámenes Disponibles</i> 
+					<i class="fa fa-th-large fa-2x"> &nbsp;Seleccione un elemento</i> 
 				</div>
 
 				<div class="panel-body">
 					@if (Session::get('miSession'))
 						
-						<div class="flexcontainer">
-							<div>
+						<div class="flexcontainer" style="vertical-align: bottom;">
+							<div class="home_admin">
 								<div class="examen_titulo">
-									<h2>codigo</h2>
+									<h2>Usuarios</h2>
 								</div>
-								<div class="examen_imagen">
-									<i class="fa fa-list-alt fa-5x"></i>
-								</div>
+								<!-- <div class="examen_icon"> -->
+									<div class="examen_imagen_custom">
+										<span class="fa-stack fa-lg fa-3x" style="padding: 0;">
+										  <i class="fa fa-square-o fa-stack-2x"></i>
+										  <i class="fa fa-users fa-stack-1x"></i>
+										</span>
+									</div>
+								<!-- </div> -->
 								<div class="examen_descripcion">
 									<p>Examen de la asignatura de comentario</p>
 								</div>
-								<div class="examen_puntos">
-									<p>Puntos posibles: </p>
+								<div class="examen_puntos examen_icon">
+									<table style="min-height: 300px;">
+									<!-- <tr>
+										<td>0</td>
+										<td>Edwin Mauricio</td>
+										<td>Quishpe Maldonado</td>
+									</tr> -->
+									@foreach($alumnos as $key => $alumno)
+										<tr>
+											<td><a href="{{ url('/alumno') }}?user={{ $alumno['id'] }}">{{ $key +1 }}</a></td>
+											<td><a href="{{ url('/alumno') }}?user={{ $alumno['id'] }}" class="custom">{{ $alumno['nombre'] }}</a></td>
+											<td><a href="{{ url('/alumno') }}?user={{ $alumno['id'] }}" class="custom">{{ $alumno['apellidos'] }}</a></td>
+										</tr>
+									@endforeach
+									</table>
 								</div>
-								<div class="examen_boton">
-								<form action="#" method="POST">
-									<input type="hidden" name="examen" value="#">
-									<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Realizar"></input>
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								</form>
+								<div class="examen_boton_custom">
+									<hr style="padding:0; margin: 0;"/>
+								</div>
+							</div>
+
+							<div class="home_admin">
+								<div class="examen_titulo">
+									<h2>Exámenes</h2>
+								</div>
+								<!-- <div class="examen_icon"> -->
+									<div class="examen_imagen_custom">
+										<span class="fa-stack fa-lg fa-3x" style="padding: 0;">
+									  		<i class="fa fa-list-alt fa-stack-2x"></i>
+										</span>
 									
-									<!-- <h3>Realizar</h3> -->
+									</div>
+								<!-- </div> -->
+								<div class="examen_descripcion">
+									<p>Examen de la asignatura de comentario</p>
+								</div>
+								<div class="examen_puntos examen_icon">
+									<table style="min-height: 300px;">
+									@foreach($examenes as $key => $examen)
+										<tr>
+											<td><a href="{{ url('/examen') }}?test={{ $examen['id'] }}">{{ $key +1 }}</a></td>
+											<td><a href="{{ url('/examen') }}?test={{ $examen['id'] }}" class="custom">{{ $examen['codigo'] }}</a></td>
+											<td><a href="{{ url('/examen') }}?test={{ $examen['id'] }}" class="custom">{{ $examen['nombre'] }}</a></td>
+										</tr>
+									@endforeach
+									</table>
+								</div>
+								<div class="examen_boton_custom">
+									<hr style="padding:0; margin: 0;"/>
 								</div>
 							</div>
 						</div>
+
+
 					@else
 						You are logged in!
 					@endif

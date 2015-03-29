@@ -34,10 +34,6 @@
 		    segundos --;
 		}
 		 
-		window.onload = function() {
-		  setInterval(muestraReloj, 1000);
-		}
-
 	</script>
 </div>
 
@@ -150,6 +146,11 @@
 							@if($preguntas[0]==null)
 								<a style="color: white;" type="button" class="onyx-button onyx-blue" href="{{ url('/home') }}" value="Regresar">Regresar</a>
 							@else
+							<script type="text/javascript">
+								window.onload = function() {
+								  setInterval(muestraReloj, 1000);
+								}
+							</script>
 								<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Finalizar examen"></input>
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							@endif

@@ -34,12 +34,16 @@ class HomeController extends Controller {
 	public function index()
 	{
 		if(\Session::get('miSession')){
-			$examenes = $this->getExamenes();
+			
 			// dd($examenes);
 			// dd(csrf_token());
 			if(\Session::get('tipo_usuario')=="administrador"){
-				return view('administrador');	
+				$examenes = $this->getAllTest();
+				$alumnos = $this->getAllStudents();
+				// dd($alumnos);
+				return view('administrador', array('examenes'=>$examenes, 'alumnos'=>$alumnos));	
 			}
+			$examenes = $this->getExamenes();
 			return view('home', array('examenes'=>$examenes));	
 		}
 		return redirect($this->loginPath());
@@ -88,6 +92,27 @@ class HomeController extends Controller {
 				return view('nuevoexamen');	
 		}
 		return redirect($this->loginPath());
+	}
+
+	public function examenesAlumno(Request $request){
+			$this->validate($request, [
+				'user' 	=> 'required',
+			]);
+		if(\Session::get('tipo_usuario')=="administrador"){
+			$examenes = $this->getExamenesRealizados($request['user']);
+			$student = $this->getStudent($request['user']);
+			dd($examenes);
+		}
+	}
+
+	public function alumnosExamen(Request $request){
+		$this->validate($request, [
+				'test' 	=> 'required',
+			]);
+		if(\Session::get('tipo_usuario')=="administrador"){
+			$test = $this->getExamen($request['test']);
+			dd($test);
+		}
 	}
 
 	public function crearNuevoExamen(Request $request){
@@ -147,6 +172,39 @@ class HomeController extends Controller {
 			}
 
 		return $examen;
+	}
+
+	private function getExamenesRealizados($usuario_id){
+		// $user_data = $this->getUserData();
+
+		$test = \DB::table('usuarios_examenes')
+			->join('examenes', 'usuarios_examenes.examen_id', '=', 'examenes.id')
+            ->join('usuarios', 'usuarios_examenes.usuario_id', '=', 'usuarios.id')
+            ->select('usuarios.id as usuario_id',
+            		 'usuarios.nombre as usuario_nombre',
+            		 'usuarios.apellidos as usuario_apellidos',
+            		 'usuarios.dni as usuario_dni',
+            		 'usuarios.tipo as usuario_tipo',
+            		 'usuarios_examenes.id as usuarios_examenes_id',
+            		 'usuarios_examenes.nota as examen_nota',
+            		 'usuarios_examenes.resultado as examen_resultado',
+            		 'usuarios_examenes.estado as examen_estado',
+            		 'usuarios_examenes.fecha as examen_fecha',
+            		 'examenes.id as examen_id',
+            		 'examenes.nombre as examen_nombre',
+            		 'examenes.codigo as examen_codigo')
+            ->where('usuarios.id',$usuario_id)
+            ->groupBy('usuarios_examenes.id')
+            ->get();
+
+			$examenes = null;
+			$cont =0;
+			foreach($test as &$aux) {
+				$examenes[$cont]    = get_object_vars($aux);
+				$cont++;
+			}
+
+		return $examenes;
 	}
 
 	private function getUserData(){
@@ -301,4 +359,63 @@ class HomeController extends Controller {
 		return $puntuaciones;
 	}
 
+	private function getAllTest(){
+			$test = \DB::table('examenes')
+						->orderBy('nombre', 'asc')
+						->get();
+
+			$tests = null;
+			$cont =0;
+			foreach($test as &$aux) {
+				$tests[$cont]    = get_object_vars($aux);
+				$cont++;
+			}
+
+			return $tests;
+	}
+	private function getAllStudents(){
+			$user = \DB::table('usuarios')
+			->where('tipo','usuario')
+			->orderBy('apellidos', 'asc')
+			->get();
+
+			$users = null;
+			$cont =0;
+			foreach($user as &$aux) {
+				$users[$cont]    = get_object_vars($aux);
+				$cont++;
+			}
+
+			return $users;
+	}
+
+	private function getStudent($id){
+		$user = \DB::table('usuarios')
+			->where('id', $id)
+			->get();
+		
+		$student = null;
+		$cont =0;
+		foreach($user as &$aux) {
+			$student[$cont]    = get_object_vars($aux);
+			$cont++;
+		}
+
+		return $student;
+	}
+
+	private function getExamen($id){
+		$testQuery = \DB::table('examenes')
+			->where('id', $id)
+			->get();
+		
+		$test = null;
+		$cont =0;
+		foreach($testQuery as &$aux) {
+			$test[$cont]    = get_object_vars($aux);
+			$cont++;
+		}
+
+		return $test;
+	}
 }

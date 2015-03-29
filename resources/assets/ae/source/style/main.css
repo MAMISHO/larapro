@@ -59,6 +59,7 @@
 .titulo{
   color: #333333;
   font-family: "Mochi Titulo";
+  text-decoration: underline;
   font-size: 36px;
   cursor: default;
   /*background-color: #f5f5f5;*/
@@ -137,5 +138,6 @@ list-style-type: disc;
 body { height: 100%;}
 .bienvenida{
 	color: #333;
-	margin-left:30px; margin-right:0;
+	/*margin-left:30px;*/
+	/*margin-right:0;*/
 }

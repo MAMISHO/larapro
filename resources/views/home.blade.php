@@ -35,7 +35,7 @@
 									<p>Examen de la asignatura de {{ $examen['examen_nombre'] }}</p>
 								</div>
 								<div class="examen_puntos">
-									<p>Puntos posibles: </p>
+									<p>Puntos posibles: <span class="examen_puntos_posibles">10</span></p>
 								</div>
 								<div class="examen_boton">
 								<form action="{{ url('/home/examen') }}" method="POST">

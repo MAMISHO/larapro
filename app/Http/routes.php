@@ -21,6 +21,9 @@ Route::post('/home/examen/calificar', 'HomeController@calificarExamen');
 Route::get('/crear/examen', 'HomeController@crearExamen');
 Route::post('/crear/nuevo/examen', 'HomeController@crearNuevoExamen');
 
+
+Route::get('/alumno', 'HomeController@examenesAlumno');//ver examenes del alumno
+Route::get('/examen', 'HomeController@alumnosExamen');//ver alumnos del examen
 // Route::post('/home/examen', array('before' => 'csrf', function()
 // {
 //     return 'You gave a valid CSRF token!';
