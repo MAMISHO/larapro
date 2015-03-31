@@ -1,4 +1,4 @@
-## Laravel PHP Framework
+## Exámenes
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
@@ -6,18 +6,18 @@
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Examenes es una aplicación que realizo como parte de mi aprendizaje en la asignatura de Administración Electrónica en la Universidad Pablo de Olavide.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+La aplicación es un evaluador automático de exámenes, los cuales son introducidos por un profesor de cualquier asignatura. Los examnes son publicados para todos los alumnos y pueden realizarlos en un tiempo máximo de 10 minutos. A continuación la aplicación califica el examen de froma automática y permite firmar en documento pdf mediante el servicio de viafirma. una vez realizada la acreditación es almacenada en el sistema y guardada en el historial del alumno y de la asignatura.
 
-## Official Documentation
+## Documentación Oficial
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Se usa la API de [Viafirma](https://developers.viafirma.com).
 
-## Contributing
+## Contribución
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Si usas la aplicación ten en cuenta los requisitos mensionados en  [Viafirma](https://developers.viafirma.com).
 
-### License
+### Licencia
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+La aplicación es open source y está bajo la licencia  [MIT license](http://opensource.org/licenses/MIT)
