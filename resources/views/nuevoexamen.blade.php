@@ -37,9 +37,10 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" class="onyx-button onyx-blue">
 									Registrar
 								</button>
+								<a style="color: white;" type="button" class="onyx-button onyx-blue" href="{{ url('/home') }}" value="Terminar">Atrás</a>
 							</div>
 						</div>
 					</form>

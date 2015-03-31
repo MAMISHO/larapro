@@ -52,21 +52,29 @@ class HomeController extends Controller {
 
 	public function nuevoExamen(Request $request)
 	{
+		// dd($request);
 		if(\Session::get('miSession')){
-			$examenes = $this->getExamenes();
-			$preguntas = $this->getPreguntas($request);
-			$mytime = \Carbon\Carbon::now();
-			\Session::put('examen_actual', $request['examen']);
-			\Session::put('preguntas', $preguntas);
-			\Session::put('fecha', $mytime);
-			// dd($mytime);
-			// dd($preguntas);
+			
 
-			// if($preguntas[0]==null){
-			// 	$preguntas[0]="No existen preguntas para el examen";
+			// if($request['examen']){
+				$examenes = $this->getExamenes();
+				$preguntas = $this->getPreguntas($request);
+				$mytime = \Carbon\Carbon::now();
+
+
+
+				\Session::put('examen_actual', $request['examen']);
+				\Session::put('preguntas', $preguntas);
+				\Session::put('fecha', $mytime);
+				$estado = $this->examenEstado($examenes[0]['usuario_id'], $request['examen']);
+				// dd($res);
+				//dd($estado);
+				if ($estado) {
+					return view('examen', array('examenes'=>$examenes,'preguntas'=>$preguntas, 'fecha'=>$mytime));	
+				}
+				
 			// }
-
-			return view('examen', array('examenes'=>$examenes,'preguntas'=>$preguntas, 'fecha'=>$mytime));	
+			return redirect("/home");
 		}
 		return redirect($this->loginPath());
 		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
@@ -82,6 +90,9 @@ class HomeController extends Controller {
 			$puntaje['incorrectas'] = \Session::get('incorrectas');
 			$puntaje['sin_responder'] = \Session::get('sin_responder');
 			$puntaje['fecha'] = \Carbon\Carbon::now();
+
+			$this->setExamenCalificado($examenes[0], $resultados, $puntaje);
+
 			return view('resultados', array('resultados'=>$resultados, 'puntaje'=>$puntaje, 'examenes'=>$examenes));	
 		}
 		return redirect($this->loginPath());
@@ -100,8 +111,9 @@ class HomeController extends Controller {
 			]);
 		if(\Session::get('tipo_usuario')=="administrador"){
 			$examenes = $this->getExamenesRealizados($request['user']);
-			$student = $this->getStudent($request['user']);
-			dd($examenes);
+			$estudiante = $this->getStudent($request['user']);
+			// dd($examenes,$estudiante);
+			return view('examenes', array('examenes'=>$examenes, 'estudiante'=>$estudiante));	
 		}
 	}
 
@@ -110,8 +122,10 @@ class HomeController extends Controller {
 				'test' 	=> 'required',
 			]);
 		if(\Session::get('tipo_usuario')=="administrador"){
-			$test = $this->getExamen($request['test']);
-			dd($test);
+			$alumnos = $this->getAlumnosExaminados($request['test']);
+			$examen = $this->getExamen($request['test']);
+			// dd($alumnos, $examen);
+			return view('alumnos', array('alumnos'=>$alumnos, 'examen'=>$examen));	
 		}
 	}
 
@@ -189,11 +203,15 @@ class HomeController extends Controller {
             		 'usuarios_examenes.nota as examen_nota',
             		 'usuarios_examenes.resultado as examen_resultado',
             		 'usuarios_examenes.estado as examen_estado',
+            		 'usuarios_examenes.correctas as examen_correctas',
+            		 'usuarios_examenes.incorrectas as examen_incorrectas',
+            		 'usuarios_examenes.sin_responder as examen_sin_responder',
             		 'usuarios_examenes.fecha as examen_fecha',
             		 'examenes.id as examen_id',
             		 'examenes.nombre as examen_nombre',
             		 'examenes.codigo as examen_codigo')
             ->where('usuarios.id',$usuario_id)
+            ->where('usuarios_examenes.estado',"inactivo")
             ->groupBy('usuarios_examenes.id')
             ->get();
 
@@ -205,6 +223,41 @@ class HomeController extends Controller {
 			}
 
 		return $examenes;
+	}
+
+	private function getAlumnosExaminados($examen_id){
+		$test = \DB::table('usuarios_examenes')
+			->join('examenes', 'usuarios_examenes.examen_id', '=', 'examenes.id')
+            ->join('usuarios', 'usuarios_examenes.usuario_id', '=', 'usuarios.id')
+            ->select('usuarios.id as usuario_id',
+            		 'usuarios.nombre as usuario_nombre',
+            		 'usuarios.apellidos as usuario_apellidos',
+            		 'usuarios.dni as usuario_dni',
+            		 'usuarios.tipo as usuario_tipo',
+            		 'usuarios_examenes.id as usuarios_examenes_id',
+            		 'usuarios_examenes.nota as examen_nota',
+            		 'usuarios_examenes.resultado as examen_resultado',
+            		 'usuarios_examenes.estado as examen_estado',
+            		 'usuarios_examenes.correctas as examen_correctas',
+            		 'usuarios_examenes.incorrectas as examen_incorrectas',
+            		 'usuarios_examenes.sin_responder as examen_sin_responder',
+            		 'usuarios_examenes.fecha as examen_fecha',
+            		 'examenes.id as examen_id',
+            		 'examenes.nombre as examen_nombre',
+            		 'examenes.codigo as examen_codigo')
+            ->where('examenes.id',$examen_id)
+            ->where('usuarios_examenes.estado',"inactivo")
+            ->groupBy('usuarios_examenes.id')
+            ->get();
+
+			$alumnos = null;
+			$cont =0;
+			foreach($test as &$aux) {
+				$alumnos[$cont]    = get_object_vars($aux);
+				$cont++;
+			}
+
+		return $alumnos;
 	}
 
 	private function getUserData(){
@@ -417,5 +470,50 @@ class HomeController extends Controller {
 		}
 
 		return $test;
+	}
+
+	private function setExamenCalificado($usuario, $preguntas, $resultados){
+		// DB::table('users')
+  //           ->where('id', 1)
+  //           ->update(['votes' => 1]);
+		$examen_id = \Session::get('examen_actual');
+		$resultado = "";
+		// dd($usuario, $preguntas, $resultados, $examen_id, $resultado);
+
+		//tratamos los resultados de las preguntas para hacerla una cadena y guardarlo en el campo resultados, para disponer de estos datos hacemos el algoritmo inverso del siguiente
+		foreach ($preguntas as $key => $res) {
+			$resultado .= "pregunta" . "=" . $res['pregunta'] . ",";
+			$resultado .= "respuesta" . "=" . $res['respuesta'] . ",";
+			$resultado .= "correcta" . "=" . $res['correcta'] . ",";
+			$resultado .= "puntos" . "=" . $res['puntos'] . ",";
+			$resultado .= "icon" . "=" . $res['icon'] . ";";
+		}
+
+			\DB::table('usuarios_examenes')
+            ->where('examen_id', $examen_id)
+            ->where('usuario_id', $usuario['usuario_id'])
+            ->update(['nota'			=>	$resultados['puntos'],
+            		  'correctas'		=>	$resultados['correctas'],
+            		  'incorrectas'		=>	$resultados['incorrectas'],
+            		  'sin_responder'	=>	$resultados['sin_responder'],
+            		  'resultado'		=>	$resultado,
+            		  'fecha'			=>	$resultados['fecha'],
+            		  'estado'			=>	"inactivo"]);
+
+        //\Session::forget('preguntas');
+        // dd($usuario, $preguntas, $resultados, $examen_id, $resultado);
+	}
+	private function examenEstado($usuario_id, $examen_id){
+		$test = \DB::table('usuarios_examenes')
+			->join('examenes', 'usuarios_examenes.examen_id', '=', 'examenes.id')
+            ->join('usuarios', 'usuarios_examenes.usuario_id', '=', 'usuarios.id')
+            ->select('estado')
+            ->where('usuario_id',$usuario_id)
+            ->where('examen_id',$examen_id)
+            ->get();
+        if($test[0]->estado == "inactivo"){
+        	return false;
+        }
+        return true;
 	}
 }
