@@ -36,7 +36,7 @@
 									</div>
 								<!-- </div> -->
 								<div class="examen_descripcion">
-									<p>Examen de la asignatura de comentario</p>
+									<p>Lista los exámenes que ha realizado un alumno en concreto</p>
 								</div>
 								<div class="examen_puntos examen_icon">
 									<table style="min-height: 300px;">
@@ -72,7 +72,7 @@
 									</div>
 								<!-- </div> -->
 								<div class="examen_descripcion">
-									<p>Examen de la asignatura de comentario</p>
+									<p>Lista lo alumnos que han realizado un examen en concreto</p>
 								</div>
 								<div class="examen_puntos examen_icon">
 									<table style="min-height: 300px;">
