@@ -6,9 +6,9 @@
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Examenes es una aplicación que realizo como parte de mi aprendizaje en la asignatura de Administración Electrónica en la Universidad Pablo de Olavide.
+Exámenes es una aplicación que realizo como parte de mi aprendizaje en la asignatura de Administración Electrónica en la Universidad Pablo de Olavide.
 
-La aplicación es un evaluador automático de exámenes, los cuales son introducidos por un profesor de cualquier asignatura. Los examnes son publicados para todos los alumnos y pueden realizarlos en un tiempo máximo de 10 minutos. A continuación la aplicación califica el examen de froma automática y permite firmar en documento pdf mediante el servicio de viafirma. una vez realizada la acreditación es almacenada en el sistema y guardada en el historial del alumno y de la asignatura.
+La aplicación es un evaluador automático de exámenes, los cuales son introducidos por un profesor de cualquier asignatura. Los exámenes son publicados para todos los alumnos y pueden realizarlos en un tiempo máximo de 10 minutos. A continuación la aplicación califica el examen de forma automática y permite firmar en documento pdf mediante el servicio de viafirma. una vez realizada la acreditación es almacenada en el sistema y guardada en el historial del alumno y de la asignatura.
 
 ## Documentación Oficial
 
