@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Edit_Mensaje>
+	<Mensaje>
+		<Remitente>
+			<Nombre>Nombre del remitente</Nombre>
+			<Mail>Correo del remitente </Mail>
+		</Remitente>
+		<Destinatario>
+			<Nombre>Nombre del destinatario</Nombre>
+			<Mail>Correo del destinatario</Mail>
+		</Destinatario>
+		<Texto>
+			<Asunto>Este es un documento</Asunto>
+			<Parrafo>Este es un documento con una estructura muy sencilla no
+				contiene atributos ni entidades...</Parrafo>
+		</Texto>
+	</Mensaje>
+</Edit_Mensaje>

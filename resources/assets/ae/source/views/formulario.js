@@ -185,6 +185,11 @@ enyo.kind({
         if(tipo_login === 1){
         	this.$.password.setPlaceholder("Contraseña");
         }
+
+        if(tipo_login === 3){
+        	window.location = 'http://localhost/certificado/authViafirma.php?token='+this.$.oculto.getAttribute("value");
+        }
+        
         // this.$.pickerMemberType.setAttribute("value",tipo_login);
         this.$.tipo_login.setAttribute("value",tipo_login);
     }

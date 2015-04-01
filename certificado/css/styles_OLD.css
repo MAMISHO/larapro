@@ -1,0 +1,119 @@
+/* ----------------------------------------------------------
+	Hoja de estilos global de la Aplicacion
+
+	Desarrollado por Servicios Avanzados para las Instituciones S.L. (VIAVANSI) 2008
+	Contacto: comercial@viavansi.com
+	http://www.viavansi.com	
+	
+	Encoding:	UTF-8
+	Autor:		Juan G. Hurtado
+	e-Mail:		jghurtado@viavansi.es
+------------------------------------------------------------- */
+
+
+/* =Globales
+------------------------------------------------------------- */
+body {
+	background: url(../images/layout/fondo-body.png) repeat-x 0 0;
+	font: 75%/1.5em "Trebuchet MS", Arial, sans-serif;
+	text-align: center;
+}
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+p{
+	color: gray;
+}
+
+a:focus, a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+ul li {
+	list-style-type: square;
+}
+
+#global {
+	background: url(../images/layout/fondo-cuerpo.png) repeat-y 0 0;
+	margin: 0 auto;
+	text-align: left;
+	width: 550px;
+} 
+
+/* Caja Redondeada */
+.box {
+	background: url(../images/layout/box-mid.png) repeat-y 0 0;
+	margin-bottom: 2em;
+	width: 550px; 
+}
+
+	.box .sup {
+		background: url(../images/layout/box-sup.png) no-repeat 0 0;
+	}
+	
+	.box .inf {
+		background: url(../images/layout/box-inf.png) no-repeat 0 100%;
+		padding: 0.5em 1em;
+	}
+
+/* =Cabecera
+------------------------------------------------------------- */
+#cabecera {
+	background: url(../images/layout/cabecera.png) no-repeat 0 0;
+	height: 95px;
+}
+
+	#cabecera h1 {
+		margin: 0;
+		padding: 0;
+		text-indent: -9999px;
+	}
+
+	#cabecera p {
+		display: none;
+	}
+
+/* =Cuerpo
+------------------------------------------------------------- */
+#cuerpo {
+	background: url(../images/layout/fondo-pie.png) no-repeat 0 100%;
+	font-size: 0.9em;
+	padding: 1em 6% 0.1em 6%;
+}
+
+	#cuerpo h2 {
+		color: #FE911B;
+		font-size: 1.6em;
+		font-weight: medium;
+	}
+	
+	#cuerpo .botonera {
+		text-align: right;
+	}
+	
+	#cuerpo input.boton {
+		background: url(../images/layout/boton.png) no-repeat 0 0;
+		border: 0;
+		color: #fff;
+		cursor: pointer;
+		padding: 6px 7px;
+		width: 120px;
+	}
+
+
+/* =Pie
+------------------------------------------------------------- */
+#pie {
+	font-size: 0.8em;
+	margin: 0 auto;
+	text-align: right;
+	width: 480px;
+}
+
+#ayuda {
+	display: none;
+}

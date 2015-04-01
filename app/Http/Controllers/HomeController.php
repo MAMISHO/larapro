@@ -43,9 +43,12 @@ class HomeController extends Controller {
 				// dd($alumnos);
 				return view('administrador', array('examenes'=>$examenes, 'alumnos'=>$alumnos));	
 			}
-			$examenes = $this->getExamenes();
+			
+			// $examenes = $this->getExamenes();
+			$examenes = $this->getAllExamenes();
 			return view('home', array('examenes'=>$examenes));	
 		}
+
 		return redirect($this->loginPath());
 		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
 	}
@@ -151,12 +154,27 @@ class HomeController extends Controller {
 		return property_exists($this, 'loginPath') ? $this->loginPath : '/';
 	}
 
+	private function getAllExamenes(){
+		// $user_data = $this->getUserData();
+
+		$test = \DB::table('examenes')
+		->select('examenes.id as examen_id',
+				 'examenes.nombre as examen_nombre',
+            	 'examenes.codigo as examen_codigo')
+		->get();
+
+			$examen = null;
+			$cont =0;
+			foreach($test as &$aux) {
+				$examen[$cont]    = get_object_vars($aux);
+				$cont++;
+			}
+
+		return $examen;
+	}
+
 	private function getExamenes(){
 		$user_data = $this->getUserData();
-
-		// $test = \DB::table('examenes')
-		// 	->where('usuario', \Session::get('miSession', 'usuario'))
-		// 	->get();
 
 		$test = \DB::table('usuarios_examenes')
 			->join('examenes', 'usuarios_examenes.examen_id', '=', 'examenes.id')
@@ -498,7 +516,7 @@ class HomeController extends Controller {
             		  'sin_responder'	=>	$resultados['sin_responder'],
             		  'resultado'		=>	$resultado,
             		  'fecha'			=>	$resultados['fecha'],
-            		  'estado'			=>	"inactivo"]);
+            		  'estado'			=>	"activo"]);
 
         //\Session::forget('preguntas');
         // dd($usuario, $preguntas, $resultados, $examen_id, $resultado);

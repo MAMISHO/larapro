@@ -123,10 +123,19 @@ trait ComprobarLogin {
 		// 			]);
 		// 		}
 
-		$user = \DB::table('usuarios')
-		->where('usuario', $credentials['usuario'])
-		->get();
+		
 		// dd($user);
+
+		if($credentials["_tipo_login"] === "3" ){ //Comprobar por medio de la matriz
+			$user = \DB::table('usuarios')
+			->where('dni', $credentials['usuario'])
+			->get();
+			// dd($user);
+		}else{
+			$user = \DB::table('usuarios')
+			->where('usuario', $credentials['usuario'])
+			->get();
+		}
 
 		$aux;
 		$usuario = null;
@@ -134,6 +143,7 @@ trait ComprobarLogin {
 		$tipo = null;
 		$nombre = null;
 		$apellidos = null;
+		$dni = null;
 		foreach($user as &$aux) {
 			$aux     = get_object_vars($aux);
 			$usuario = $aux['usuario'];
@@ -142,6 +152,7 @@ trait ComprobarLogin {
 			$tipo = $aux['tipo'];
 			$nombre = $aux['nombre'];
 			$apellidos = $aux['apellidos'];
+			$dni = $aux['dni'];
 		}
 		
 
@@ -202,6 +213,17 @@ trait ComprobarLogin {
 				return redirect($this->homePath());
 
 			}
+			
+			if($credentials["_tipo_login"] === "3" ){ //Comprobar por medio viafirma
+				$str = strtoupper($usuario);
+				\Session::put('miSession', \Input::get('clave'));
+				\Session::put('miSession', $str);
+				\Session::put('tipo_usuario', $tipo);
+				\Session::put('nombre', $nombre);
+				\Session::put('apellidos', $apellidos);
+				return redirect($this->homePath());
+			}
+
 		}//Error en la autenticación de ls credenciales
 				return redirect($this->loginPath())
 					->withInput($request->only('usuario'))

@@ -21,6 +21,9 @@ Route::post('/home/examen/calificar', 'HomeController@calificarExamen');
 Route::get('/crear/examen', 'HomeController@crearExamen');
 Route::post('/crear/nuevo/examen', 'HomeController@crearNuevoExamen');
 
+//certificado digital
+Route::get('/cerfificado', 'CertificadoController@index');
+
 
 Route::get('/alumno', 'HomeController@examenesAlumno');//ver examenes del alumno
 Route::get('/examen', 'HomeController@alumnosExamen');//ver alumnos del examen

@@ -43,6 +43,11 @@
 								<a style="color: white;" type="button" class="onyx-button onyx-blue" href="{{ url('/home') }}" value="Terminar">Atrás</a>
 							</div>
 						</div>
+						<!-- <div class="form-group">
+							<div class="col-md-6 col-md-offset-4">
+								<a style="color: white;" type="button" class="onyx-button onyx-blue" href="http://localhost/certificado/dir/index.html" value="Terminar">firmar</a>
+							</div>
+						</div> -->
 					</form>
 				</div>
 			</div>
