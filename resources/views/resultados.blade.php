@@ -16,7 +16,7 @@
 						<div class="examen_header_row">
 							<div class="examen_header_colum">
 								<div class="examen_cell_nombre">
-									<i class="fa fa-pie-chart fa-2x"> &nbsp; Resultados de {{ $examenes[1]['examen_nombre'] }}</i> 			
+									<i class="fa fa-pie-chart fa-2x"> &nbsp; Resultados de {{ $examen[0]['nombre'] }}</i> 			
 								</div>
 								
 							</div>
@@ -61,15 +61,15 @@
 										<table style="display: table-row-group;">
 											<tr >
 												<td class="etiqueta"><h4>Alumno:</h4> </td>	
-												<td>{{ $examenes[1]['usuario_nombre'] }} {{ $examenes[1]['usuario_apellidos'] }}</td>
+												<td>{{ $usuario['nombre'] }} {{ $usuario['apellidos'] }}</td>
 											</tr>
 											<tr>
 												<td class="etiqueta"><h4>DNI:</h4> </td>
-												<td>{{ $examenes[1]['usuario_dni'] }}</td>
+												<td>{{ $usuario['dni'] }}</td>
 											</tr>
 											<tr>
 												<td class="etiqueta"><h4>Examen:</h4></td>
-												<td>{{ $examenes[1]['examen_nombre'] }}</td>
+												<td>{{ $examen[0]['nombre'] }}</td>
 											</tr>
 										</table>
 									</div>

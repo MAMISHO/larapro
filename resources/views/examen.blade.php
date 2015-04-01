@@ -46,18 +46,18 @@
 						<div class="examen_header_row">
 							<div class="examen_header_colum">
 								<div class="examen_cell_nombre">
-									<i class="fa fa-list fa-2x"> &nbsp;Examen: {{ $examenes[1]['examen_nombre'] }}</i> 			
+									<i class="fa fa-list fa-2x"> &nbsp;Examen: {{ $examen[0]['nombre'] }}</i> 			
 								</div>
 								
 							</div>
 							<div class="examen_header_colum">
 								<div class="examen_cell_fecha">
 									<h3>Fecha : {{ $fecha->format('d-m-Y') }} </h3>
-								</div>	
-								<div class="examen_cell_fecha">
 									<h4>Tiempo para finalizar <span id="reloj" style="color:#337ab7"></span></h4>
-									<!-- <div id="reloj"></div> -->
-								</div>
+								</div>	
+								<!-- <div class="examen_cell_fecha">
+									<h4>Tiempo para finalizar <span id="reloj" style="color:#337ab7"></span></h4>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -76,11 +76,11 @@
 										<table>
 											<tr>
 												<td class="etiqueta"><h4>Alumno:</h4> </td>	
-												<td>{{ $examenes[1]['usuario_nombre'] }} {{ $examenes[1]['usuario_apellidos'] }}</td>
+												<td>{{ $usuario['nombre'] }} {{ $usuario['apellidos'] }}</td>
 											</tr>
 											<tr>
 												<td class="etiqueta"><h4>DNI:</h4> </td>
-												<td>{{ $examenes[1]['usuario_dni'] }}</td>
+												<td>{{ $usuario['dni'] }}</td>
 											</tr>
 										</table>
 									</div>
