@@ -165,7 +165,14 @@
 									</table>
 								</div>
 								<br />
-								<a style="color: white;" type="button" class="onyx-button onyx-blue" href="{{ url('/home') }}" value="Terminar">Finalizar</a>
+								
+								<form action="http://localhost/certificado/firmar.php" method="POST">
+										<input type="hidden" name="location" value="{{ $pdfLocation }}">
+										<input type="hidden" name="convocatoria" value="{{ $convocatoria }}">
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
+										<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Firmar" />
+								</form>
+								
 							</div>
 						</div>
 					</div>

@@ -15,7 +15,7 @@
 Route::get('/', 'PrincipalController@index');
 
 Route::get('/home', 'HomeController@index');
-// Route::get('/administrator', 'HomeController@index');
+Route::get('/home/mis/examenes', 'HomeController@misExamenes');
 Route::post('/home/examen', 'HomeController@nuevoExamen');
 Route::post('/home/examen/calificar', 'HomeController@calificarExamen');
 Route::get('/crear/examen', 'HomeController@crearExamen');
@@ -23,6 +23,8 @@ Route::post('/crear/nuevo/examen', 'HomeController@crearNuevoExamen');
 
 //certificado digital
 Route::get('/cerfificado', 'CertificadoController@index');
+Route::post('/home/examen/firmado', 'CertificadoController@examenFirmado');
+Route::post('/home/documento', 'CertificadoController@obtenerDocumento');
 
 
 Route::get('/alumno', 'HomeController@examenesAlumno');//ver examenes del alumno

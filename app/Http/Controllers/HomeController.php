@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use DPDF;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -97,9 +98,17 @@ class HomeController extends Controller {
 			$puntaje['sin_responder'] = \Session::get('sin_responder');
 			$puntaje['fecha'] = \Carbon\Carbon::now();
 
-			$this->setExamenCalificado($usuario, $resultados, $puntaje);
-			// dd($examen,$usuario);
-			return view('resultados', array('resultados'=>$resultados, 'puntaje'=>$puntaje, 'examen'=>$examen, 'usuario'=>$usuario));	
+
+			// dd(storage_path());
+			$id_convocatoria = $this->setExamenCalificado($usuario, $resultados, $puntaje);
+			// $pdfLocation = $this->newPDF($resultados, $puntaje, $examen, $usuario);
+			$pdfLocation = $this->newDomPDF($resultados, $puntaje, $examen, $usuario);
+
+
+			// dd(\Carbon\Carbon::now());
+
+			//La Hora la obtenemos así $fecha->format('d-m-Y H:i:s')
+			return view('resultados', array('resultados'=>$resultados, 'puntaje'=>$puntaje, 'examen'=>$examen, 'usuario'=>$usuario, 'convocatoria'=>$id_convocatoria, 'pdfLocation'=>$pdfLocation));	
 		}
 		return redirect($this->loginPath());
 	}
@@ -146,7 +155,24 @@ class HomeController extends Controller {
 			$id = \DB::table('examenes')->insertGetId(
     			['nombre' => $request['nombre'], 'codigo' => $request['codigo']]
 				);
-			return view('administrador');	
+			// return view('administrador');	
+			$examenes = $this->getAllTest();
+				$alumnos = $this->getAllStudents();
+				// dd($alumnos);
+				return view('administrador', array('examenes'=>$examenes, 'alumnos'=>$alumnos));	
+		}
+		return redirect($this->loginPath());
+	}
+
+	public function misExamenes(){
+			
+		if(\Session::get('miSession')){
+			$estudiante = $this->getUserData();
+			// dd($estudiante);
+			$examenes = $this->getExamenesRealizados($estudiante['id']);
+			
+			// dd($examenes,$estudiante);
+			return view('misexamenes', array('examenes'=>$examenes, 'estudiante'=>$estudiante));	
 		}
 		return redirect($this->loginPath());
 	}
@@ -244,11 +270,12 @@ class HomeController extends Controller {
             		 'usuarios_examenes.incorrectas as examen_incorrectas',
             		 'usuarios_examenes.sin_responder as examen_sin_responder',
             		 'usuarios_examenes.fecha as examen_fecha',
+            		 'usuarios_examenes.id_firma as examen_id_firma',
             		 'examenes.id as examen_id',
             		 'examenes.nombre as examen_nombre',
             		 'examenes.codigo as examen_codigo')
             ->where('usuarios.id',$usuario_id)
-            // ->where('usuarios_examenes.estado',"inactivo")
+            ->where('usuarios_examenes.estado',"firmado")
             ->groupBy('usuarios_examenes.id')
             ->get();
 
@@ -283,7 +310,7 @@ class HomeController extends Controller {
             		 'examenes.nombre as examen_nombre',
             		 'examenes.codigo as examen_codigo')
             ->where('examenes.id',$examen_id)
-            // ->where('usuarios_examenes.estado',"inactivo")
+            ->where('usuarios_examenes.estado',"firmado")
             ->groupBy('usuarios_examenes.id')
             ->get();
 
@@ -527,7 +554,7 @@ class HomeController extends Controller {
 		}
 		// dd($usuario);
 		//item 1
-        \DB::table('usuarios_examenes')->insertGetId(array(
+        $id = \DB::table('usuarios_examenes')->insertGetId(array(
         		'usuario_id'	=>	$usuario['id'],
         		'examen_id'		=>	$examen_id,
         		'nota'			=>	$resultados['puntos'],
@@ -536,7 +563,7 @@ class HomeController extends Controller {
             	'sin_responder'	=>	$resultados['sin_responder'],
             	'resultado'		=>	$resultado,
             	'fecha'			=>	$resultados['fecha'],
-            	'estado'		=>	"activo"
+            	'estado'		=>	"realizado"
         	));
 
 			// \DB::table('usuarios_examenes')
@@ -552,6 +579,7 @@ class HomeController extends Controller {
 
         //\Session::forget('preguntas');
         // dd($usuario, $preguntas, $resultados, $examen_id, $resultado);
+        return $id;
 	}
 	private function examenEstado($usuario_id, $examen_id){
 		$test = \DB::table('usuarios_examenes')
@@ -565,5 +593,260 @@ class HomeController extends Controller {
         	return false;
         }
         return true;
+	}
+
+
+	// PDF
+	private function newPDF($resultados, $puntaje, $examen, $usuario){
+		if(\Session::get('miSession')){		
+			
+			\PDF::SetTitle('Examen del alumno: ...');
+
+			\PDF::AddPage();
+
+			// Cabecera
+			// \PDF::Image($this->image_file, 10, 10, 15, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+			\PDF::Write(0, '', '', false, 'C', true, 0, false, false, 0);
+            \PDF::Cell(0, 0, 'Tarjeta Identificativa de la UPO', 0, true, 'C', 0, '', 0, false, 'M', 'M');
+
+			$data_user= $this->getUserData();
+
+			$txt="Resultado del examen de AE"."\n Tabla de claves";
+			 \PDF::Write(0, $txt, '', false, 'C', true, 0, false, false, 0);
+
+			 $txt="Alumno Edwin Mauricio Quishpe"."\n firmante";
+			 // Tabla
+
+
+			 $pfdData = $this->generarPDF($resultados, $puntaje, $examen, $usuario);
+			\PDF::Write(0, $txt, '', false, 'C', true, 0, false, false, 0);
+			\PDF::WriteHTML($pfdData, true, true, true, false, '');
+
+			\PDF::Output(storage_path().'/examen.pdf', 'F');
+
+		    // return Response::download($filename);
+
+			// return view('home');	
+		}
+	}
+		// return redirect($this->loginPath());
+		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
+
+	private function generarPDF($resultados, $puntaje, $examen, $usuario){
+			
+			$estilos = $this->generarEstiloPDF();
+			$html = "";
+			$html = $html.$estilos;
+			$html = $html.'</style>
+							</head>
+							<body>';
+			// Aqui cargo el html
+
+			$html .= '<div>
+						<div>
+							<div>
+								<div>
+									<div>
+										<div>
+											<div>
+												<div>
+													<div>
+														<i class="fa fa-pie-chart fa-2x"> &nbsp; Resultados de '.$examen[0]['nombre'].'</i> 			
+													</div>
+													
+												</div>
+												<div>
+													<div>
+														<h3>Fecha y Hora: '.$puntaje['fecha']->format('d-m-Y H:i:s').'</h3>
+													</div>	
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									
+									<div>
+										<div>
+											
+											<div>
+												<div>
+													<div>
+														<div>
+															<div>
+																
+															</div>
+															<div>
+																
+															</div>
+														</div>
+														<div>
+															
+															<div>
+																<div>
+																	
+																</div>
+																<div>
+																	<div>
+																		<h2>Nota: ' .$puntaje['puntos'].'</h2>	
+																	</div>
+																	
+																</div>
+															</div>
+															<table>
+																<tr>
+																	<td><h4>Alumno:</h4> </td>	
+																	<td>' .$usuario['nombre'].' '.$usuario['apellidos']. '</td>
+																</tr>
+																<tr>
+																	<td><h4>DNI:</h4> </td>
+																	<td>' .$usuario['dni']. '</td>
+																</tr>
+																<tr>
+																	<td><h4>Examen:</h4></td>
+																	<td>' .$examen[0]['nombre']. '</td>
+																</tr>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div>
+												<div>
+													<div>
+														<div>
+															<i class="fa fa-bar-chart fa-2x">&nbsp; Calificación</i>
+														</div>
+													</div>
+													<div>
+														<div>
+															<table>
+																<tr>
+																	<th><h3>Pregunta</h4></th>
+																	<th>RU</th>
+																	<th>RC</th>
+																	<th>PT</th>
+																	<th><i class="fa fa-line-chart"></i></th>
+																</tr>';
+
+																foreach($resultados as $key => $resultado){
+
+																$html = $html. '<tr>
+																	<td><p><span>' .($key + 1). '</span>)&nbsp; '. $resultado['pregunta']. '</p></td>
+																	<td>';
+																		if( $resultado['respuesta'] == "--"){
+																			$html = $html. 'vacio';
+																		}
+																		
+																		if( $resultado['respuesta'] == "resp_a"){
+																			$html = $html. 'A';
+																		}
+																		
+																		if( $resultado['respuesta'] == "resp_b"){
+																			$html = $html. 'B';
+																		}
+																		
+																		if( $resultado['respuesta'] == "resp_c"){
+																			$html = $html. 'C';
+																		}
+																		
+																		if( $resultado['respuesta'] == "resp_d"){
+																			$html = $html. 'D';
+																		}
+																		
+																	$html = $html. '</td>
+																	<td>';
+																		if( $resultado['correcta'] == "resp_a"){
+																			$html = $html. 'A';
+																		}
+																		
+																		if( $resultado['correcta'] == "resp_b"){
+																			$html = $html. 'B';
+																		}
+																		
+																		if( $resultado['correcta'] == "resp_c"){
+																			$html = $html. 'C';
+																		}
+																		
+																		if( $resultado['correcta'] == "resp_d"){
+																			$html = $html. 'D';
+																		}
+																		
+																	$html = $html. '</td>
+																	<td>' .$resultado['puntos']. '</td>
+																	<td><i class="' .$resultado['icon']. '"></i></td>
+																</tr>';
+																}
+															$html = $html. '</table>
+														</div>
+														<table>
+															<tr>
+																<th>Leyenda</th>
+															</tr>
+															<tr>
+																<td>RU</td>
+																<td>Respuesta del usuario</td>
+															</tr>
+															<tr>
+																<td>RC</td>
+																<td>Respuesta Correcta</td>
+															</tr>
+															<tr>
+																<td>PT</td>
+																<td>Puntos</td>
+															</tr>
+														</table>
+													</div>
+													<br />
+													<a style="color: white;" type="button"href="#" value="Terminar">Finalizar</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+								</div>
+							</div>
+						</div>
+					</div>';
+			//finalizo el html
+
+			$html = $html.'</body>
+						</html>';
+
+		return $html;
+	}
+
+	private function generarEstiloPDF(){
+			$estilos = '<!DOCTYPE html>
+						<html>
+						<head>
+							<title></title>
+							<style type="text/css">';
+
+
+			// $filename = public_path()."/css/app.css";
+			// $file = fopen($filename, 'r');
+			// $datos = fread($file, filesize($filename));
+			// fclose($file);
+
+			// $estilos = $estilos.$datos;
+
+			
+		    $filename = storage_path()."/css/front.css";
+			$file = fopen($filename, 'r');
+			$datos = fread($file, filesize($filename));
+			fclose($file);
+			// dd($datos);
+			$estilos = $estilos.$datos;
+
+		return $estilos;
+	}
+
+	private function newDomPDF($resultados, $puntaje, $examen, $usuario){
+		$html=$this->generarPDF($resultados, $puntaje, $examen, $usuario);
+			 
+		$file_location = storage_path().'/pdfs/'.$usuario['dni'].'_'.$examen[0]['codigo'].'_'.$puntaje['fecha']->format('d_m_Y H_i_s').'.pdf';
+		DPDF::loadHTML($html)->save($file_location)->stream('download.pdf');
+		return $file_location;
 	}
 }

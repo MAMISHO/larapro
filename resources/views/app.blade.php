@@ -49,6 +49,9 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="bienvenida"><i class="fa fa-user"></i> Bienvenido/a</span> {{ Session::get('nombre') }}&nbsp;{{ Session::get('apellidos') }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
+								@if (Session::get('tipo_usuario')!="administrador")
+								<li><a href="{{ url('/home/mis/examenes') }}"><i class="fa fa-list-alt"></i> &nbsp;Mis exámenes</a></li>
+								@endif
 								<li><a href="{{ url('/auth/logout') }}"><i class="fa fa-power-off"></i> &nbsp;Salir</a></li>
 							</ul>
 						</li>

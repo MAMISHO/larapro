@@ -24,7 +24,11 @@ include_once("./viafirma/includes.php");
 	    
 	    // Proceso de Firma correcto: recibe un objeto UsuarioGenericoViafirma
 		public function signOK($usuarioGenerico){
-			echo "Firma correcta";
+			// echo "Id de Firma devuelto: ".$usuarioGenerico->signId;
+			// echo $_SESSION['idtemporal'];
+			$_SESSION['id_firma'] = $usuarioGenerico->signId;
+			header("Location: ./dir/firmado.php");
+			// session_destroy();
 		}
 	}
 
