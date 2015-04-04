@@ -16,12 +16,13 @@ class CreateUsersTestsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->decimal('nota');
-			$table->string('resultado');
+			$table->text('resultado');
 			$table->string('estado');
-			$table->date('fecha');
+			$table->datetime('fecha');
 			$table->integer('correctas');
 			$table->integer('incorrectas');
 			$table->integer('sin_responder');
+			$table->string('id_firma');
 			
 
 			$table->integer('usuario_id')->unsigned();

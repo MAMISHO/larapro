@@ -1,0 +1,550 @@
+.topper{
+  width: 100%;
+  position: fixed;
+  top:0px;
+  clear: both;
+  z-index: 1999999999;
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   /*-webkit-align-items: center;
+   align-items: center;*/
+   -webkit-justify-content: center;
+   justify-content: center;
+   /* You can set flex-wrap and flex-direction individually */
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-flex-wrap: wrap;
+   flex-wrap: wrap;
+   /* Or do it all in one line with flex flow */
+   -webkit-flex-flow: row wrap;
+   flex-flow: row wrap;
+   /* tweak the where items line up on the row */
+   /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+   -webkit-align-content: flex-end;
+   align-content: flex-end;
+}
+.flexcontainer > div{
+  padding-top: 0px;
+  padding-bottom: 0px;
+	/*height: 20%;*/
+	width: 45%;
+	min-height: 200px;
+	/*min-width: 450px;*/
+	background-color: #f5f5f5;
+  border-radius: 10px;
+	margin: 10px;
+	/*transition: width 4s;*/
+	 -webkit-transition-delay: 0.08s; /* Safari */
+    transition-delay: 0.08s;
+    -webkit-box-shadow: 0px 7px 19px 0px rgba(50, 50, 50, 0.32);
+	 -moz-box-shadow:    0px 7px 19px 0px rgba(50, 50, 50, 0.32);
+	 box-shadow:         0px 7px 19px 0px rgba(50, 50, 50, 0.32);
+}
+.flexcontainer > div.home_admin{
+    padding-top: 0px;
+  padding-bottom: 0px;
+  /*height: 20%;*/
+  width: 45%;
+  min-height: 200px;
+  min-width: 350px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  margin: 10px;
+  /*transition: width 4s;*/
+   -webkit-transition-delay: 0.08s; /* Safari */
+    transition-delay: 0.08s;
+    -webkit-box-shadow: 0px 7px 19px 0px rgba(50, 50, 50, 0.32);
+   -moz-box-shadow:    0px 7px 19px 0px rgba(50, 50, 50, 0.32);
+   box-shadow:         0px 7px 19px 0px rgba(50, 50, 50, 0.32);
+}
+.flexcontainer > div:hover{
+	/*background-color: #23527c;*/
+	/*color:white;*/
+	-webkit-box-shadow: 0px 7px 9px 0px rgba(50, 50, 50, 1);
+	-moz-box-shadow:    0px 7px 9px 0px rgba(50, 50, 50, 1);
+	box-shadow:         0px 7px 9px 0px rgba(50, 50, 50, 1);
+}
+.examen_titulo{
+  border: 2px solid #23527c;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  background-color: #23527c;
+  /*background-color: #337ab7;*/
+  color:white;
+  margin-top: 0;
+}
+.examen_titulo_custom{
+  -webkit-box-shadow: inset 0px 4px 2px 0px rgba(50, 50, 50, 0.8);
+  -moz-box-shadow:    inset 0px 4px 2px 0px rgba(50, 50, 50, 0.8);
+  box-shadow:         inset 0px 4px 2px 0px rgba(50, 50, 50, 0.8);
+}
+.examen_titulo h2{
+  cursor: default;
+  padding: 0;
+  margin: 0;
+  color:white;
+  text-align: center;
+}
+.examen_imagen{
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  font-size: 1.2em;
+}
+.examen_imagen_custom{
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5%;
+  /*margin-top: 5%;*/
+  font-size: 1.2em;
+  -webkit-box-shadow: inset 0px 5px 4px 0px rgba(50, 50, 50, 0.8);
+  -moz-box-shadow:    inset 0px 5px 4px 0px rgba(50, 50, 50, 0.8);
+  box-shadow:         inset 0px 5px 4px 0px rgba(50, 50, 50, 0.8);
+  /*border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-radius: 15px;*/
+}
+.examen_icon{
+  -webkit-box-shadow: inset 0px 5px 4px 0px rgba(50, 50, 50, 0.8);
+  -moz-box-shadow:    inset 0px 5px 4px 0px rgba(50, 50, 50, 0.8);
+  box-shadow:         inset 0px 5px 4px 0px rgba(50, 50, 50, 0.8);
+    /*  border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;*/
+}
+.examen_puntos{
+  margin: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 0;
+  font-size: 20px;
+  /*border: 2px dotted #23527c;*/
+}
+.examen_puntos p{
+  margin: 0px;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 10px;
+  cursor: default;
+}
+.examen_puntos table{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.examen_puntos tr{
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #333;
+}
+.examen_puntos td{
+  padding-top: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-right: 8px;
+}
+a.custom{
+  color: #333;
+}
+.examen_puntos_posibles{
+  font-weight: bolder; 
+  color: lightblue; background-color: #333; 
+  padding: 5px; 
+  border-radius: 50px;
+}
+.examen_boton{
+    padding: 0;
+    /*background-color: #f16522;*/
+    height: 100%;
+    margin-bottom: 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+.examen_boton_custom{
+  position: relative;
+  bottom: 0px;
+  height: 40px;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 0;
+  background-color: white;
+  -webkit-box-shadow: 0px -3px 2px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px -3px 2px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px -3px 2px 0px rgba(50, 50, 50, 0.75);
+}
+/*.examen_boton h3{
+  margin-bottom: 0px;
+  text-align: center;
+  padding: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid #f16522;
+  background-color: #f16522;
+  color: white;
+}*/
+.examen_descripcion{
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  background-color: white;
+  cursor: default;
+}
+.examen_boton input{
+  max-width: 100%;
+  width: 100%;
+/*  margin: 0;
+  padding: 0;*/
+  margin-bottom: 0px;
+  height: 100%;
+  font-size: 1.5em;
+}
+.examen_header_content{
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  color: #333333;
+  background-color: #f5f5f5;
+  border-color: #dddddd;
+}
+.examen_header{
+  display: table;
+}
+.examen_header_row{
+  display: table-row;
+}
+.examen_header_colum{
+  display: table-cell;
+}
+.examen_cell_nombre{
+  width: 100%;
+}
+.examen_cell_fecha{
+  text-align: right;
+  width: 100%;
+  position:relative;
+  left:50%;
+}
+.examen_contain{
+  width: 100%;
+  height: auto;
+  display: table;
+/*  -webkit-box-shadow: inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+  -moz-box-shadow:    inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+  box-shadow:         inset 0px 3px 5px 2px rgba(50, 50, 50, 1);*/
+}
+.usuario_contain{
+  border-bottom: 50px;
+  width: auto;
+  display: table-row;
+  display: table;
+  -webkit-box-shadow: inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+  -moz-box-shadow:    inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+  box-shadow:         inset 0px 3px 5px 2px rgba(50, 50, 50, 1);
+}
+.examen_preguntas{
+  display: table-row;
+  width: 96%;
+  padding: 2%;
+  margin-top: 20px;
+}
+.usuario_datos{
+  /*width: 100%;*/
+  /*min-width: 500px;*/
+  padding: 20px;
+  /*height: 100%;*/
+  border: 2px solid #333;
+}
+.usuario_foto{
+  display: table-cell;
+  font-size: 20px;
+  padding-right: 30px;
+}
+.usuario_informacion{
+  padding-left: 30px;
+  border-left: 1px solid #333;
+  display: table-cell;
+}
+.usuario_informacion tr{
+  border-bottom: 1px double #333;
+}
+.usurio_header_row{
+  padding: 0;
+  margin: 0;
+  display: table-row;
+  height: 20px;
+}
+.usuario_header_cell{
+  text-align: center;
+  display: table-cell;
+}
+/*.usuario_header_cell h2{
+  padding: 10px;
+  border: 2px dotted green;ç
+  border-radius: 10px;
+}*/
+.usurios_puntos{
+  padding: 10px;
+  margin: 0;
+  border: 3px dotted green;
+  border-radius: 50px;
+  -webkit-box-shadow: 3px 6px 4px -2px rgba(0,0,0,0.89);
+-moz-box-shadow: 3px 6px 4px -2px rgba(0,0,0,0.89);
+box-shadow: 3px 6px 4px -2px rgba(0,0,0,0.89);
+}
+.usurios_puntos h2{
+  margin: 0;
+  padding: 0;
+}
+.etiqueta{
+  text-align: right;
+  padding-right: 15px;
+}
+.pregunta_contain{
+  width: 100%;
+  margin-top: 50px;
+  padding: 0;
+  /*background-color: red;*/
+  display: table;
+}
+.pregunta_header{
+  /*background-color: #333;*/
+  background-color: #337ab7;
+  color:white;
+  border-top: 2px solid #333;
+  border-right: 2px solid #333;
+  border-left: 2px solid #333;
+  /*border-top-left-radius: 10px;*/
+  border-top-right-radius: 10px;
+  /*width: 100%;*/
+
+  display: table-row;
+  display: table;
+}
+.pregunta_texto{
+  border: 2px solid #333;
+  padding: 20px;
+/*    padding: 4px;
+  margin: 3px;*/
+  /*border: 2px solid black;*/
+  /*background-color: red;*/
+
+  /*display: table-row;*/
+
+}
+.pregunta_respuesta{
+  /*display: table-row;*/
+  border-top: 1px solid #333;
+  padding: 10px; 
+}
+.pregunta_numero{
+  padding: 3px;
+  width: auto;
+  display: table-cell;
+}
+.pregunta_numero h3{
+  /*border-top-left-radius: 10px;*/
+  border-top-right-radius: 10px;
+  border: 2px solid #333;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+/*incia formulario*/
+
+  
+/* Hiding default checkbox and Radio button design */
+input[type=checkbox],input[type=radio] {
+    opacity: 0;
+    position: absolute;
+    z-index: 12;
+    width: 18px;
+    height: 18px;
+}
+ 
+/* Disable outline when clicked*/
+input[type=checkbox]:checked,input[type=radio]:checked,input[type=checkbox]:focus,input[type=radio]:focus {
+    outline: none !important;
+}
+ 
+input[type=checkbox]+.lbl,input[type=radio]+.lbl {
+    position: relative;
+    z-index: 11;
+    display: inline-block;
+    margin: 0;
+    line-height: 20px;
+    min-height: 14px;
+    min-width: 14px;
+    font-weight: normal;
+}
+
+
+
+input[type=checkbox]+.lbl.padding-16::before,input[type=radio]+.lbl.padding-16::before {
+    margin-right: 16px;
+}
+ 
+input[type=checkbox]+.lbl.padding-12::before,input[type=radio]+.lbl.padding-12::before {
+    margin-right: 12px;
+}
+ 
+input[type=checkbox]+.lbl.padding-8::before,input[type=radio]+.lbl.padding-8::before {
+    margin-right: 8px;
+}
+ 
+input[type=checkbox]+.lbl.padding-4::before,input[type=radio]+.lbl.padding-4::before {
+    margin-right: 4px;
+}
+ 
+input[type=checkbox]+.lbl.padding-0::before,input[type=radio]+.lbl.padding-0::before {
+    margin-right: 0px;
+}
+
+
+
+/* Basic Checkbox styles */
+input[type=checkbox]+.lbl::before,input[type=radio]+.lbl::before {
+  font-family: fontAwesome;
+  font-weight: normal;
+  font-size: 11px;
+  color: #2091cf;
+  content: "\a0";
+  background-color: #FAFAFA;
+  border: 1px solid #CCC;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  height: 13px;
+  line-height: 13px;
+  min-width: 13px;
+  margin-right: 1px;
+  margin-top: -5px;
+}
+ 
+/* Checked state styles */
+input[type=checkbox]:checked+.lbl::before,input[type=radio]:checked+.lbl::before {
+  display: inline-block;
+  content: '\f00c';
+  background-color: #F5F8FC;
+  border-color: #adb8c0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+}
+ 
+/* Hover state styles */
+input[type=checkbox]:hover+.lbl::before,input[type=radio]:hover+.lbl::before,input[type=checkbox]+.lbl:hover::before,input[type=radio]+.lbl:hover::before {
+  border-color: #1c7aad;
+}
+ 
+/* Shadow when checked or Active */
+input[type=checkbox]:active+.lbl::before,input[type=radio]:active+.lbl::before,input[type=checkbox]:checked:active+.lbl::before,input[type=radio]:checked:active+.lbl::before {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+ 
+/* Disabled state styles */
+input[type=checkbox]:disabled+.lbl::before,input[type=radio]:disabled+.lbl::before,input[type=checkbox][disabled]+.lbl::before,input[type=radio][disabled]+.lbl::before,input[type=checkbox].disabled+.lbl::before,input[type=radio].disabled+.lbl::before {
+  background-color: #DDD !important;
+  border-color: #CCC !important;
+  box-shadow: none !important;
+  color: #BBB;
+}
+ 
+/* Styles for Radio button */
+input[type=radio]+.lbl::before {
+  border-radius: 32px;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 36px;
+}
+ 
+input[type=radio]:checked+.lbl::before {
+  content: "\2022";
+}
+/*fin de formulario*/
+
+/*Inicio resultados*/
+.resultados{
+  padding: 0;
+  margin-right: 0;
+  width: 100%;
+  height: auto;
+}
+.resultados table{
+  padding: 0;
+  margin: 0;
+}
+.resultados tr{
+  padding-bottom: 5px;
+  border-bottom: 1px solid #333;
+}
+.resultados td{
+  padding-right: 10px;
+  padding-left: 10px;
+  border-right: 1px solid #333;
+}
+.resultados_pregunta{
+  text-align: justify;
+}
+.verde{
+  color:green;
+}
+.rojo{
+  color: red;
+}
+.amarillo{ 
+  /*por contraste se cambia a naranja*/
+  color:orange;
+}
+#nav_mobile{
+  display: none;
+}
+/*Fin resultados*/
+@media (max-width: 600px) {
+  .flexcontainer{
+    display: table;
+  }
+  .flexcontainer > div{
+    /*display: table-cell;*/
+    /*width: 100%;*/
+  }
+  .flexcontainer > div.home_admin{
+    width: 100%;
+  }
+  .flexcontainer > div{
+    width: 100%;
+  }
+  #nav_principal{
+    display: none;
+  }
+  #nav_mobile{
+    display: table-cell;
+    padding: 0;
+    margin: 0;
+  }
+  #nav_mobile{
+    list-style: none;
+    width: 250px;
+  }
+  .navbar-header{
+    width: 250px;
+    float: left;
+  }
+}

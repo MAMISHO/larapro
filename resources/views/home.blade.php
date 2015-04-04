@@ -23,6 +23,7 @@
 					@if (Session::get('miSession'))
 						
 						<div class="flexcontainer">
+						@if($examenes)
 						@foreach ($examenes as $examen)
 							<div>
 								<div class="examen_titulo">
@@ -35,29 +36,27 @@
 									<p>Examen de la asignatura de {{ $examen['examen_nombre'] }}</p>
 								</div>
 								<div class="examen_puntos">
-									@if($examen['examen_estado'] == 'inactivo')
-										<p>Puntos obtenidos: <span class="examen_puntos_posibles">{{ $examen['examen_nota'] }}</span></p>
-									@else
+									
 										<p>Puntos posibles: <span class="examen_puntos_posibles">10</span></p>
-									@endif
+									
 								</div>
 								<div class="examen_boton">
-								@if($examen['examen_estado'] == 'inactivo')
-								<!-- <form method="POST"> -->
-									<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="No disponible"></input>
-								@else
+								
 									<form action="{{ url('/home/examen') }}" method="POST">
 										<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Realizar"></input>
 										<input type="hidden" name="examen" value="{{ $examen['examen_id'] }}">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									</form>
-								@endif
+								
 								
 									
 									<!-- <h3>Realizar</h3> -->
 								</div>
 							</div>
 						@endforeach
+						@else
+							<h2>No tienes exámenes pendientes</h2>
+						@endif
 						</div>
 					@else
 						You are logged in!

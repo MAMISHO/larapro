@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder {
         \DB::table('usuarios')->insert(array(
         		'nombre'		=>	'Mauricio',
         		'apellidos'		=>	'Quishpe Maldonado',
-        		'dni'			=>	'53425364N',
+        		'dni'			=>	'54223707B',
         		'usuario'		=>	'mauricio',
         		'clave'			=>	\Hash::make('12345'),
                 'tipo'         =>  'usuario',

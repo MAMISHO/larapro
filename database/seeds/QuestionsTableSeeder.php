@@ -8,9 +8,13 @@ class QuestionsTableSeeder extends Seeder {
     {
         DB::table('preguntas')->delete();
 
+        for ($i=1; $i < 6 ; $i++) { 
+            # code...
+        
+
         //pregunta 1
         \DB::table('preguntas')->insert(array(
-        		'examen_id'	=>	1,
+        		'examen_id'	=>	$i,
         		'pregunta'	=>	'La Administración Electrónica...',
         		'resp_a'	=>	'Implica el uso de las TIC en las Administraciones Públicas.',
         		'resp_b'	=>	'Requiere cambios organizativos.',
@@ -21,7 +25,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 2
         \DB::table('preguntas')->insert(array(
-        		'examen_id'	=>	1,
+        		'examen_id'	=>	$i,
         		'pregunta'	=>	'Una infraestructura de clave pública es el conjunto de elementos hardware y software,...',
         		'resp_a'	=>	'Así como políticas y procedimientos que permiten llevar a cabo la gestión de las aplicaciones de administración electrónica.',
         		'resp_b'	=>	'Que permiten gestionar el ciclo de vida de los certificados digitales.',
@@ -32,7 +36,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 3
         \DB::table('preguntas')->insert(array(
-        		'examen_id'	=>	1,
+        		'examen_id'	=>	$i,
         		'pregunta'	=>	'¿Quién mantiene actualizada la CRL?',
         		'resp_a'	=>	'La Autoridad de Certificación.',
         		'resp_b'	=>	'La Autoridad de Registro.',
@@ -43,7 +47,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 4
         \DB::table('preguntas')->insert(array(
-        		'examen_id'	=>	1,
+        		'examen_id'	=>	$i,
         		'pregunta'	=>	'¿Qué tipo de certificado permite identificar una cualidad, estado o situación?',
         		'resp_a'	=>	'Certificado de representante.',
         		'resp_b'	=>	'Certificado de pertenencia a empresa.',
@@ -54,7 +58,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 5
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'SL proporciona...',
                 'resp_a'    =>  'Autenticación y confidencialidad.',
                 'resp_b'    =>  'Autenticación y no repudio.',
@@ -65,7 +69,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 6
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Con respecto a los subprotocolos de TLS/SSL:',
                 'resp_a'    =>  'Record encapsula el tráfico.',
                 'resp_b'    =>  'Handshake se encarga únicamente de la autenticación.',
@@ -76,7 +80,7 @@ class QuestionsTableSeeder extends Seeder {
         
         //pregunta 7
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Señale la afirmación FALSA con respecto a TLS/SSL...',
                 'resp_a'    =>  'El cliente siempre envía su certificado.',
                 'resp_b'    =>  'El servidor siempre envía su certificado.',
@@ -87,7 +91,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 8
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Cuál es la Ley de Firma Electrónica?',
                 'resp_a'    =>  'Ley59/2003.',
                 'resp_b'    =>  'Ley11/2007.',
@@ -98,7 +102,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 9
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Un certificado digital se corresponde, siendo precisos, con:',
                 'resp_a'    =>  'Firma electrónica.',
                 'resp_b'    =>  'Firma electrónica avanzada.',
@@ -109,7 +113,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 10
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '"Aquella dirección electrónica disponible para los ciudadanos a través de redes de telecomunicaciones cuya titularidad, gestión y administración corresponde a una Administració Pública, órgano o entidad administrativa en el ejercicio de sus competencias". ¿Qué concepto estamos definiendo?',
                 'resp_a'    =>  'Tablón de anuncios digital.',
                 'resp_b'    =>  'Certificado digital del organismo.',
@@ -120,7 +124,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 11
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Qué ley determina el contexto de agentes y servicios que conforman el nuevo modelo de Administración al que se pretende llegar, y que como podemos deducir, y en materia de identidad digital, se asienta sobre la LFE?',
                 'resp_a'    =>  'Ley11/2003.',
                 'resp_b'    =>  'Ley15/1999.',
@@ -131,7 +135,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 12
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Una "actuación administrativa producida por un sistema de información adecuadamente programado sin necesidad de intervención de una persona física en cada caso singular" se denomina, según la LAECSP:',
                 'resp_a'    =>  'Actuación administrativa automatizada.',
                 'resp_b'    =>  'Actuación administrativa directa.',
@@ -142,7 +146,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 13
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Qué instrumento se puede emplear para asegurar la validez de un documento impreso?',
                 'resp_a'    =>  'Sello de órgano.',
                 'resp_b'    =>  'Código seguro de verificación.',
@@ -153,7 +157,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 14
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Las administraciones públicas admiten sistemas de firma electrónica conforme a lo dispuesto por la LFE. ¿Cuáles de los siguientes son válidos?',
                 'resp_a'    =>  'DNIe, para personas físicas.',
                 'resp_b'    =>  'Certificados digitales.',
@@ -164,7 +168,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 15
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'El DNI electrónico viene regulado por.',
                 'resp_a'    =>  'Ley59/2003.',
                 'resp_b'    =>  'Real Decreto 1553/2005.',
@@ -175,7 +179,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 16
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'El uso por parte de la Administración de estándares abiertos así como, en su caso y de forma complementaria, de estándares que sean de uso generalizado por los ciudadanos, ¿es uno de los principios de la administración electrónica?',
                 'resp_a'    =>  'Sí, es el principio de neutralidad tecnológica.',
                 'resp_b'    =>  'Sí, es el principio de simplificación administrativa.',
@@ -186,7 +190,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 17
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'La publicación de actos y comunicaciones en tablón de anuncios electrónico,...',
                 'resp_a'    =>  'Puede complementar al tablón de anuncios presencial, pero no sustituirlo.',
                 'resp_b'    =>  'Puede sustituir o complementar al tablón de anuncios presencial.',
@@ -197,7 +201,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 18
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Qué formato de firma es el más apropiado para la firma longeva de los siguientes?',
                 'resp_a'    =>  'XAdES-A.',
                 'resp_b'    =>  'XAdES-T.',
@@ -208,7 +212,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 19
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Qué formato de firma es el más apropiado para su entrega a usuarios?',
                 'resp_a'    =>  'XAdES.',
                 'resp_b'    =>  'CAdES.',
@@ -219,7 +223,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 20
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Cuál de los siguientes formatos utilizaría para firma longeva?',
                 'resp_a'    =>  'XAdES-C.',
                 'resp_b'    =>  'PAdES-LTV.',
@@ -230,7 +234,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 21
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Con respecto al formato CAdES-T.',
                 'resp_a'    =>  'Es utilizado por PAdES-BES Profile.',
                 'resp_b'    =>  'Incluye información de sellado de tiempo.',
@@ -241,7 +245,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 22
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Cuáles de las siguientes enumeraciones incluye un elemento extraño?',
                 'resp_a'    =>  'Firma en lote; Firma Desatendida; Multifirma.',
                 'resp_b'    =>  'Firma Centralizada; Firma digitalizada; Multifirma de lotes.',
@@ -252,7 +256,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 23
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Cuál de las siguientes NO es una opción para la generación del recibo de firma de un documento firmado?',
                 'resp_a'    =>  'QR Code.',
                 'resp_b'    =>  'Código de barras UCC128.',
@@ -263,7 +267,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 24
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Es posible la supresión de la necesidad de aportar cualquier documento acreditativo en los procedimientos administrativos (SCSP)?',
                 'resp_a'    =>  'Sí, si es de manera automatizada.',
                 'resp_b'    =>  'Sí, basta con que el ciudadano lo autorice.',
@@ -274,7 +278,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 25
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Cuál de las siguientes es una plataforma para el uso de certificados digitales de uso generalizado en la Administración Pública española?',
                 'resp_a'    =>  '@firma.',
                 'resp_b'    =>  'Afirm@.',
@@ -285,7 +289,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 26
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'La plataforma indicada en la pregunta anterior tiene un software que se ejecuta en cliente llamado Cliente de Firma. ¿Cuál es la afirmación FALSA?',
                 'resp_a'    =>  'Existe una versión ligera del cliente llamada miniapplet del cliente de firma.',
                 'resp_b'    =>  'El miniapplet del cliente de firma está desarrollado íntegramente en javascript para hacerlo más ligero.',
@@ -296,7 +300,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 27
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'La notificación electrónica se puede practicar mediante...',
                 'resp_a'    =>  'Un correo electrónico ordinario.',
                 'resp_b'    =>  'Una aplicación web que registre el acceso a una página determinada.',
@@ -307,7 +311,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 28
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿En qué contexto puede encontrar el Número de Referencia Completo (NRC)?',
                 'resp_a'    =>  'Notificación electrónica.',
                 'resp_b'    =>  'Registro electrónico.',
@@ -318,7 +322,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 29
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Cómo se conoce a la firma múltiple en la que cada firma refrenda a la firma anterior?',
                 'resp_a'    =>  'Cofirma.',
                 'resp_b'    =>  'Multifirma.',
@@ -329,7 +333,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 30
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'La definición "Información de cualquier naturaleza en forma electrónica, archivada en un soporte electrónico según un formato determinado y susceptible de identificación y tratamiento diferenciado" se corresponde con:',
                 'resp_a'    =>  'Documento electrónico.',
                 'resp_b'    =>  'Compulsa electrónica.',
@@ -340,7 +344,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 31
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'La identificación mediante funcionario público...',
                 'resp_a'    =>  'Es una forma reconocida de identificación de los ciudadanos.',
                 'resp_b'    =>  'Requiere que el ciudadano y el funcionario cuenten con certificado digital.',
@@ -351,7 +355,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 32
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Son características del Código Seguro de Verificación:',
                 'resp_a'    =>  'El carácter único del código generado para cada documento.',
                 'resp_b'    =>  'Su vinculación con el documento generado y con el firmante.',
@@ -362,7 +366,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 33
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'El Registro General de Protección de Datos contiene:',
                 'resp_a'    =>  'La estructura y los datos de los ficheros de datos de carácter personal que han sido declarados.',
                 'resp_b'    =>  'La estructura de los ficheros de datos de carácter personal que han sido declarados.',
@@ -373,7 +377,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 34
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Todos los datos de carácter personal recogidos deben cumplir...',
                 'resp_a'    =>  'Principio del consentimiento del afectado.',
                 'resp_b'    =>  'Principio de información.',
@@ -384,7 +388,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 35
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  '¿Qué significan los derechos ARCO?',
                 'resp_a'    =>  'Acceso, rectificación, cancelación y oposición.',
                 'resp_b'    =>  'Acceso, revisión, cancelación y oposición.',
@@ -395,7 +399,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 36
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'La Protección de Datos de Carácter Personal viene regulada en:',
                 'resp_a'    =>  'Ley 15/1999.',
                 'resp_b'    =>  'R.D. 1720/2007.',
@@ -406,7 +410,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 37
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'El Esquema Nacional de Seguridad viene regulado en: ',
                 'resp_a'    =>  'R.D. 3/2010.',
                 'resp_b'    =>  'R.D. 3/2011.',
@@ -417,7 +421,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 38
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'El Esquema Nacional de Seguridad recoge:',
                 'resp_a'    =>  'Medidas relacionadas con la organización global de la seguridad.',
                 'resp_b'    =>  'Medidas para proteger la operación del sistema como conjunto integral de componentes para un fin.',
@@ -428,7 +432,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 39
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'Las Dimensiones de Seguridad recogidas en el ENS son:',
                 'resp_a'    =>  'Disponibilidad. Trazabilidad. Autenticidad. Integridad. Confidencialidad.',
                 'resp_b'    =>  'Disponibilidad. Trazabilidad. Autenticidad. Neutralidad. Integridad. Confidencialidad.',
@@ -439,7 +443,7 @@ class QuestionsTableSeeder extends Seeder {
 
         //pregunta 40
         \DB::table('preguntas')->insert(array(
-                'examen_id' =>  1,
+                'examen_id' =>  $i,
                 'pregunta'  =>  'El Esquema Nacional de Interoperabilidad viene regulado en:',
                 'resp_a'    =>  'R.D. 4/2011.',
                 'resp_b'    =>  'R.D. 3/2010.',
@@ -447,7 +451,7 @@ class QuestionsTableSeeder extends Seeder {
                 'resp_d'    =>  'R.D. 4/2010.',
                 'correcta'  =>  'resp_d'
             ));
-
+        }
         //pregunta 
         // \DB::table('preguntas')->insert(array(
         //         'examen_id' =>  1,
@@ -458,6 +462,10 @@ class QuestionsTableSeeder extends Seeder {
         //         'resp_d'    =>  '',
         //         'correcta'  =>  ''
         //     ));
+
+        //Duplicamos para las otras asignaturas y simular que tienen preguntas
+
+        
 
     }
 
