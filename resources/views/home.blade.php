@@ -23,6 +23,7 @@
 					@if (Session::get('miSession'))
 						
 						<div class="flexcontainer">
+						@if($examenes)
 						@foreach ($examenes as $examen)
 							<div>
 								<div class="examen_titulo">
@@ -53,6 +54,9 @@
 								</div>
 							</div>
 						@endforeach
+						@else
+							<h2>No tienes exámenes pendientes</h2>
+						@endif
 						</div>
 					@else
 						You are logged in!

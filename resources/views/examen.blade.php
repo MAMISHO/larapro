@@ -10,8 +10,8 @@
 		// 	document.formulario.submit();
 		// }
 		horas = 00;
-		minutos = 0;
-		segundos = 10;
+		minutos = 10;
+		segundos = 00;
 
 		function muestraReloj() {
 		    if (segundos === 0){

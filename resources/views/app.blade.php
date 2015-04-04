@@ -51,6 +51,7 @@
 							<ul class="dropdown-menu" role="menu">
 								@if (Session::get('tipo_usuario')!="administrador")
 								<li><a href="{{ url('/home/mis/examenes') }}"><i class="fa fa-list-alt"></i> &nbsp;Mis exámenes</a></li>
+								<li><a href="{{ url('/home/anular/examenes') }}"><i class="fa fa-times-circle"></i> &nbsp;Anular exámenes pendientes</a></li>
 								@endif
 								<li><a href="{{ url('/auth/logout') }}"><i class="fa fa-power-off"></i> &nbsp;Salir</a></li>
 							</ul>
@@ -69,6 +70,8 @@
 							            	<li id="op1"><a href="{{ url('/crear/examen') }}" class="homeIcon"><i class="fa fa-plus-circle"></i> Crear examen</a></li>
 							            @else
 							                <li id="op1"><a href="{{ url('/home') }}" class="homeIcon"><i class="fa fa-list-alt"></i> Nuevo examen</a></li>
+							                <li><a href="{{ url('/home/mis/examenes') }}"><i class="fa fa-list-alt"></i> &nbsp;Mis exámenes</a></li>
+							                <li><a href="{{ url('/home/anular/examenes') }}"><i class="fa fa-times-circle"></i> &nbsp;Anular exámenes pendientes</a></li>
 							            @endif
 							                <!-- <li class="dropdown"> -->
 												<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-key"></i>Trajeta de claves <span class="caret"></span></a> -->

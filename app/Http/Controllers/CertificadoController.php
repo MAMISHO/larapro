@@ -67,6 +67,7 @@ class CertificadoController extends Controller {
 			$this->updateConvocatoria($request['convocatoria'], $request['id_firma']);
 			return view('firmado', array('id_firma'=>$request['id_firma']));	
 		}
+		return redirect($this->loginPath());
 	}
 
 	private function updateConvocatoria($convocatoria, $id_firma){
@@ -75,7 +76,28 @@ class CertificadoController extends Controller {
             ->where('id', $convocatoria)
             ->update(['id_firma'		=>	$id_firma,
             		  'estado'			=>	"firmado"]);
+        
+         //comprobamos si ha superado el examen para actualizar los superados
+        $test = \DB::table('usuarios_examenes')
+        			->select('nota','examen_id','usuario_id')
+        			->where('id', $convocatoria)
+        			->get();
 
+        $examen = null;
+			$cont =0;
+			foreach($test as &$aux) {
+				$examen[$cont]    = get_object_vars($aux);
+				$cont++;
+			}
+			if($examen[0]['nota']>=5){
+
+				\DB::table('alumnos_matriculados_examenes')
+				->where('usuario_id', $examen[0]['usuario_id'])
+				->where('examen_id', $examen[0]['examen_id'])
+				->update(['estado'	=>	"superado"]);
+
+			}
+			// dd($examen[0]);
 	}
 
 	public function loginPath()

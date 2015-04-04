@@ -6,17 +6,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends Controller {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
-
 	/**
 	 * Create a new controller instance.
 	 *
@@ -46,12 +35,46 @@ class HomeController extends Controller {
 			}
 			
 			// $examenes = $this->getExamenes();
-			$examenes = $this->getAllExamenes();
+			// $examenes = $this->getAllExamenes();
+			$examenes = $this->getAllTestRegister();
 			return view('home', array('examenes'=>$examenes));	
 		}
 
 		return redirect($this->loginPath());
 		//return property_exists($this, 'loginPath') ? $this->loginPath : '/';
+	}
+
+	public function anularExamenes(){
+		if(\Session::get('miSession')){
+			$usuario = $this->getUserData();
+			$examenes = $this->getAllTestAnular();
+			
+			$pdfs = null;
+			if($examenes){
+				$pdfs = $this->generarPDFdeAnulacion($usuario, $examenes);	
+			}
+			
+			$tam = sizeof($pdfs);
+			// dd($examenes, $tam, $usuario, $pdfs);
+
+			return view('anularexamenes', array('examenes'=>$examenes, 'estudiante'=>$usuario, 'pdfs'=>$pdfs, 'tam'=>$tam));	
+		}
+		return redirect($this->loginPath());
+	}
+	public function anuladoFirmado(Request $request){
+		$this->validate($request, [
+				'id_firma' 	=> 'required',
+			]);
+		if(\Session::get('miSession')){
+			$firmas = explode(";", $request['id_firma']);
+			$examenes = $this->getAllTestAnular();
+
+			$this->updateAnulados($examenes);
+
+			return view('anularfirmado', array('id_firmas'=>$firmas));	
+			// return "correcta".$request['id_firma'];
+		}
+		return redirect($this->loginPath());
 	}
 
 	public function nuevoExamen(Request $request)
@@ -130,6 +153,7 @@ class HomeController extends Controller {
 			// dd($examenes,$estudiante);
 			return view('examenes', array('examenes'=>$examenes, 'estudiante'=>$estudiante));	
 		}
+		return redirect($this->loginPath());
 	}
 
 	public function alumnosExamen(Request $request){
@@ -142,6 +166,7 @@ class HomeController extends Controller {
 			// dd($alumnos, $examen);
 			return view('alumnos', array('alumnos'=>$alumnos, 'examen'=>$examen));	
 		}
+		return redirect($this->loginPath());
 	}
 
 	public function crearNuevoExamen(Request $request){
@@ -155,11 +180,23 @@ class HomeController extends Controller {
 			$id = \DB::table('examenes')->insertGetId(
     			['nombre' => $request['nombre'], 'codigo' => $request['codigo']]
 				);
+
+
+			for ($i=1; $i < 6; $i++) { //Se registra a todos los alumnos en el nuevo examen, en producción se debería hacer un trigger en la BBDD
+				
+				\DB::table('alumnos_matriculados_examenes')->insert(array(
+	        		'usuario_id'	=>	$i,
+	        		'examen_id'		=>	$id,
+	        		'estado'		=>	'no_superado'
+	        	));
+			}
+
+
 			// return view('administrador');	
 			$examenes = $this->getAllTest();
-				$alumnos = $this->getAllStudents();
-				// dd($alumnos);
-				return view('administrador', array('examenes'=>$examenes, 'alumnos'=>$alumnos));	
+			$alumnos = $this->getAllStudents();
+			// dd($alumnos);
+			return view('administrador', array('examenes'=>$examenes, 'alumnos'=>$alumnos));	
 		}
 		return redirect($this->loginPath());
 	}
@@ -490,6 +527,67 @@ class HomeController extends Controller {
 
 			return $tests;
 	}
+
+	private function getAllTestRegister(){
+			$user_data = $this->getUserData();
+
+			$test = \DB::table('alumnos_matriculados_examenes')
+			->join('examenes', 'alumnos_matriculados_examenes.examen_id', '=', 'examenes.id')
+            ->join('usuarios', 'alumnos_matriculados_examenes.usuario_id', '=', 'usuarios.id')
+            ->select('examenes.id as examen_id',
+            		 'examenes.nombre as examen_nombre',
+            		 'examenes.codigo as examen_codigo')
+            ->where('usuarios.id',$user_data['id'])
+            ->where('alumnos_matriculados_examenes.estado','<>','anulado')
+            ->groupBy('alumnos_matriculados_examenes.id')
+            ->get();
+
+			$tests = null;
+			$cont =0;
+			foreach($test as &$aux) {
+				$tests[$cont]    = get_object_vars($aux);
+				$cont++;
+			}
+
+			return $tests;
+	}
+
+	private function getAllTestAnular(){
+			$user_data = $this->getUserData();
+
+			$test = \DB::table('alumnos_matriculados_examenes')
+			->join('examenes', 'alumnos_matriculados_examenes.examen_id', '=', 'examenes.id')
+            ->join('usuarios', 'alumnos_matriculados_examenes.usuario_id', '=', 'usuarios.id')
+            ->select('examenes.id as examen_id',
+            		 'examenes.nombre as examen_nombre',
+            		 'examenes.codigo as examen_codigo')
+            ->where('usuarios.id',$user_data['id'])
+            ->where('alumnos_matriculados_examenes.estado','no_superado')
+            ->groupBy('alumnos_matriculados_examenes.id')
+            ->get();
+
+			$tests = null;
+			$cont =0;
+			foreach($test as &$aux) {
+				$tests[$cont]    = get_object_vars($aux);
+				$cont++;
+			}
+
+			return $tests;
+	}
+
+	private function updateAnulados($examenes){
+		$user_data = $this->getUserData();
+		foreach ($examenes as $key => $examen) {
+			\DB::table('alumnos_matriculados_examenes')
+				->where('usuario_id', $user_data['id'])
+				->where('examen_id', $examen['examen_id'])
+				->update(['estado'	=>	"anulado"]);
+		}
+
+	}
+
+
 	private function getAllStudents(){
 			$user = \DB::table('usuarios')
 			->where('tipo','usuario')
@@ -848,5 +946,73 @@ class HomeController extends Controller {
 		$file_location = storage_path().'/pdfs/'.$usuario['dni'].'_'.$examen[0]['codigo'].'_'.$puntaje['fecha']->format('d_m_Y H_i_s').'.pdf';
 		DPDF::loadHTML($html)->save($file_location)->stream('download.pdf');
 		return $file_location;
+	}
+
+	private function generarPDFdeAnulacion($usuario, $examenes){
+		//dd('background-image: url('.storage_path().'/css/fondo_doc.jpg)');
+		$fecha = \Carbon\Carbon::now();
+		$estilos = '<style type="text/css">
+					body{
+						margin:0;
+						padding:40px;
+					    background-position: right bottom, left top;
+					    background-repeat: no-repeat, repeat;
+					}
+					.contenedor{
+						background-image: url(http://localhost/larapro/storage/css/fondo_doc.jpg);
+						margin:0;
+						padding:0;
+						border: 2px solid #333;
+						border-radius: 15px;
+						height: 90%;
+						width: 100%;
+					}
+					.header{
+						height: 20%;
+						width: 100%;
+						font-style:italic;
+						text-align:center;
+					}
+					.main{
+						height: 65%;
+						width: 100%;
+						text-align:center;
+					}
+					.footer{
+						height: 10%;
+						width: 100%;
+						text-align:right;							
+					}
+					</style>';
+		$lista = null;
+		foreach ($examenes as $key => $examen) {
+		
+			$html ='<!DOCTYPE html>
+					<html>
+					<head>
+						<title>Anular Examen</title>
+						'.$estilos.'
+					</head>
+					<body>
+						<div class="contenedor">
+							<div class="header">
+								<h1>Petición de anulación de examen</h1>
+							</div>
+							<div class="main">
+								<h2>Yo '.$usuario['nombre'].' '.$usuario['apellidos'].' con D.N.I. '.$usuario['dni'].'</h2>
+								<h3>Manifiesto mi deseo de no realizar el examen de</h3>
+								<h2>'.$examen['examen_nombre'].'</h2>
+							</div>
+							<div class="footer">
+								<h2>Sevilla '.$fecha->format('d - m - Y').'</h2>
+							</div>
+						</div>
+					</body>
+					</html>';
+			$file_location = storage_path().'/anular/'.$usuario['dni'].'_'.$examen['examen_codigo'].'.pdf';
+			DPDF::loadHTML($html)->save($file_location);
+			$lista[$key] = $file_location;
+		}
+		return $lista;
 	}
 }

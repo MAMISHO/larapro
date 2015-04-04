@@ -16,7 +16,7 @@
 						<div class="examen_header_row">
 							<div class="examen_header_colum">
 								<div class="examen_cell_nombre">
-									<i class="fa fa-pie-chart fa-2x"> &nbsp; Exámenes realizados</i> 			
+									<i class="fa fa-minus-square fa-2x"> &nbsp; Anular exámenes</i> 			
 								</div>
 								
 							</div>
@@ -67,7 +67,7 @@
 							<div class="pregunta_contain">
 								<div class="pregunta_header">
 									<div class="pregunta_numero">
-										<i class="fa fa-bar-chart fa-2x">&nbsp; Resultados</i>
+										<i class="fa fa-bar-chart fa-2x">&nbsp; Exámenes</i>
 									</div>
 								</div>
 								<div class="pregunta_texto">
@@ -75,16 +75,10 @@
 									<div class="resultados">
 										<table  style="font-size: 1.2em; margin-left: auto; margin-right: auto; width:100%; ">
 											<tr style="text-align: center;">
-												<th style="text-align: center;">Examen</th>
 												<th></th>
-												<th style="text-align: center;"><i class="fa fa-calendar"></i></th>
-												<th style="text-align: center;"><i class="fa fa-clock-o"></i></th>
-												<th style="text-align: center;"><i class="fa fa-check-circle"></i></th>
-												<th style="text-align: center;"><i class="fa fa-times-circle"></i></th>
-												<th style="text-align: center;"><i class="fa fa-exclamation-triangle"></i></th>
-												<th style="text-align: center;">Nota</th>
+												<th>Examen</th>
 												<th style="text-align: center;"><i class="fa fa-line-chart"></i></th>
-												<th style="text-align: center;"><i class="fa fa-file-pdf-o"></i></th>
+												<th style="text-align: center;"></th>
 												<!-- <th style="text-align: center;"><i class="fa fa-file-pdf-o"></i></th>
 												<th style="text-align: center;"><i class="fa fa-file-pdf-o"></i></th> -->
 											</tr>
@@ -92,77 +86,40 @@
 											<tr>
 												<td style="border-right: none;"><span>{{ $key+1 }}</span>)&nbsp; {{ $examen['examen_codigo'] }}</td>
 												<td>{{ $examen['examen_nombre'] }}</td>
-												<td>{{ date('d-m-Y', strtotime($examen['examen_fecha'])) }}</td>
-												<td>{{ date('H:i:s', strtotime($examen['examen_fecha'])) }}</td>
-												<td>{{ $examen['examen_correctas'] }}</td>
-												<td>{{ $examen['examen_incorrectas'] }}</td>
-												<td>{{ $examen['examen_sin_responder'] }}</td>
-												<td>{{ $examen['examen_nota'] }}</td>
-												@if($examen['examen_nota'] >= 5)
-												<td><i class="fa fa-check-circle verde"></i></td>
-												@else
 												<td><i class="fa fa-times-circle rojo"></i></td>
-												@endif
 												<td>
-													<a href="http://localhost/certificado/documento.php?id_firma={{ $examen['examen_id_firma'] }}&token={{ csrf_token() }}"><i class="fa fa-lock"></i></a>
-												<!-- </td>
-												<td> -->&nbsp;
-													<a href="http://services.viafirma.com/viafirma/v/{{ $examen['examen_id_firma'] }}?j=true"><i class="fa fa-barcode"></i></a>
-												<!-- </td>
-												<td> -->&nbsp;
-													<a href="http://services.viafirma.com/viafirma/v/{{ $examen['examen_id_firma'] }}?o=true"><i class="fa fa-cloud-download"></i></a>
+													<a href="{{ $pdfs[$key] }}"><i class="fa fa-file-pdf-o"></i></a>
 												</td>
-												
 											</tr>
 											@endforeach
 										</table>
+										<br />
+										<form action="http://localhost/certificado/firma-bucle.php" method="POST">
+											@foreach($pdfs as $key => $pdf)
+												<input type="hidden" name="pdf{{ $key }}" value="{{ $pdf }}">
+											@endforeach
+											<input type="hidden" name="tam" value="{{ $tam }}">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<input style="color: white;" type="submit" class="onyx-button onyx-blue" value="Firmar en bucle" />
+										</form>
 									</div>
 									<table style="margin-top:50px;margin-left: auto; margin-right: auto;">
 										<tr>
 											<th></th>
 											<th>Leyenda</th>
 										</tr>
-										<tr>
-											<td><i class="fa fa-calendar"></i></td>
-											<td>&nbsp;Fecha en la que realizó el examen</td>
-										</tr>
-										<tr>
-											<td><i class="fa fa-check-circle"></i></td>
-											<td>&nbsp;Respuestas Correctas</td>
-										</tr>
-										<tr>
-											<td><i class="fa fa-times-circle"></i></td>
-											<td>&nbsp;Respuestas Incorrectas</td>
-										</tr>
-										<tr>
-											<td><i class="fa fa-exclamation-triangle"></i></td>
-											<td>&nbsp;Preguntas sin responder</td>
-										</tr>
-										<tr>
-											<td><i class="fa fa-check-circle verde"></i></td>
-											<td>&nbsp;Aprobado</td>
-										</tr>
-										<tr>
 											<td><i class="fa fa-times-circle rojo"></i></td>
 											<td>&nbsp;Suspenso</td>
 										</tr>
 										
 										<tr>
-											<td><i class="fa fa-lock"></i></td>
-											<td>&nbsp;Documento firmado y custodiado</td>
-										</tr>
-										<tr>
-											<td><i class="fa fa-barcode"></i></td>
-											<td>&nbsp;Comprobante de firma</td>
-										</tr>
-										<tr>
-											<td><i class="fa fa-cloud-download"></i></td>
-											<td>&nbsp;Documento Original</td>
+											<td><i class="fa fa-file-pdf-o"></i></td>
+											<td>&nbsp;Documento a firmar</td>
 										</tr>
 									</table>
 								</div>
 								@else
-									<p>El alumno no ha realizado ningún examen</p>
+									<p>El alumno no tiene ningún examen para anular</p>
 								@endif
 								<br />
 								<a style="color: white;" type="button" class="onyx-button onyx-blue" href="{{ url('/home') }}" value="Terminar">Regresar</a>
