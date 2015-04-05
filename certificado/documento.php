@@ -14,7 +14,7 @@
 
 
 		ViafirmaClientFactory::init($VIAFIRMA_SERVICE_URL, $VIAFIRMA_SERVICE_URL."/rest",
-			"http://localhost/certificado/", $appId, $appPassword);
+			"https://examenemq.upo.es/certificado/", $appId, $appPassword);
 	    
 	    
 

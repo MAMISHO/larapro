@@ -7,7 +7,7 @@ session_start();
 	
 </head>
 <body>
-	<form action="http://localhost/larapro/public/auth/login" method="POST" name="formulario">
+	<form action="https://examenemq.upo.es/public/auth/login" method="POST" name="formulario">
 		
 			<input type="hidden" name="usuario" value="<?=$_SESSION['dni']?>">
 			<input type="hidden" name="clave" value="vacio">

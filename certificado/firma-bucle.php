@@ -18,7 +18,7 @@ session_start();
 	    // echo $appId;
 	    // dd($VIAFIRMA_SERVICE_URL, $VIAFIRMA_SERVICE_URL."/rest", $APPLICATION_URL, $appId, $appPassword);
 		ViafirmaClientFactory::init($VIAFIRMA_SERVICE_URL, $VIAFIRMA_SERVICE_URL."/rest",
-			"http://localhost/certificado/", $appId, $appPassword);
+			"https://examenemq.upo.es/certificado/", $appId, $appPassword);
 	    
 	    // 3) Obtener instancia del Cliente de Viafirma
 		$viafirmaClient = ViafirmaClientFactory::getInstance();
@@ -48,7 +48,7 @@ session_start();
 		}
 	    
 	    // echo $id_firmas;
-	    $viafirmaClient->solicitarFirmasIndependientes($id_firmas,"http://localhost/certificado/firmaResponse.php");
+	    $viafirmaClient->solicitarFirmasIndependientes($id_firmas,"https://examenemq.upo.es/certificado/firmaResponse.php");
 
 	    //Subimos el documento
 		// $idFirma = $viafirmaClient->prepareFirmaWithTypeFileAndFormatSign("prueba.txt",

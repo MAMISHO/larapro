@@ -8,11 +8,11 @@
 	
 	//URL de aplicacion
 	// $APPLICATION_URL="http://localhost:88/viafirma-client-php";
-	$APPLICATION_URL="http://localhost/larapro/public/certificado";
+	$APPLICATION_URL="https://examenemq.upo.es/certificado";
 	
 	//URL de retorno
 	// $VIAFIRMA_RETURN_TO_URL="http://localhost:88/viafirma-client-php/openidReturn.php";
-	$VIAFIRMA_RETURN_TO_URL="http://localhost/larapro/public/certificado/openidReturn.php";
+	$VIAFIRMA_RETURN_TO_URL="https://examenemq.upo.es/certificado/openidReturn.php";
 	
 
 	global $authOpenIDRandSource,$appId,$appPassword,$pathTemporalOpenIDFileStore,$proxyHost,$proxyPort,$proxyUser,$proxyPassword, $maxSizeMegabytes;

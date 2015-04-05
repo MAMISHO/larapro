@@ -94,7 +94,7 @@
 											@endforeach
 										</table>
 										<br />
-										<form action="http://localhost/certificado/firma-bucle.php" method="POST">
+										<form action="https://examenemq.upo.es/certificado/firma-bucle.php" method="POST">
 											@foreach($pdfs as $key => $pdf)
 												<input type="hidden" name="pdf{{ $key }}" value="{{ $pdf }}">
 											@endforeach

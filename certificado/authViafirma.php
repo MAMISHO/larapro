@@ -10,13 +10,13 @@ session_start();
 	    // echo $appId;
 	    // dd($VIAFIRMA_SERVICE_URL, $VIAFIRMA_SERVICE_URL."/rest", $APPLICATION_URL, $appId, $appPassword);
 		ViafirmaClientFactory::init($VIAFIRMA_SERVICE_URL, $VIAFIRMA_SERVICE_URL."/rest",
-			"http://localhost/certificado/", $appId, $appPassword);
+			"https://examenemq.upo.es/certificado/", $appId, $appPassword);
 	    
 	    // 3) Obtener instancia del Cliente de Viafirma
 		$viafirmaClient = ViafirmaClientFactory::getInstance();
 	    
 	    // 4) Invocación de método concreto
-		$viafirmaClient->solicitarAutenticacion("http://localhost/certificado/authResponse.php");
+		$viafirmaClient->solicitarAutenticacion("https://examenemq.upo.es/certificado/authResponse.php");
 
 	}catch(Exception $exception){
 

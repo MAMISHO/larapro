@@ -7,7 +7,7 @@ session_start();
 	
 </head>
 <body>
-	<form action="http://localhost/larapro/public/home/anular/firmado" method="POST" name="formulario">
+	<form action="https://examenemq.upo.es/public/home/anular/firmado" method="POST" name="formulario">
 		
 			<input type="hidden" name="convocatoria" value="<?=$_SESSION['convocatoria']?>">
 			<input type="hidden" name="id_firma" value="<?=$_SESSION['id_firma']?>">

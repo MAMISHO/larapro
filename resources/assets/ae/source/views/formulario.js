@@ -29,7 +29,8 @@ enyo.kind({
 
 	// {tag:"form", attributes:{action:"http://localhost/larapro/public/home", method:"post"}, components:[
 	
-	{tag:"form", attributes:{action:"http://localhost/larapro/public/auth/login", method:"POST"}, components:[
+	// {tag:"form", attributes:{action:"http://localhost/larapro/public/auth/login", method:"POST"}, components:[
+	{tag:"form", attributes:{action:"https://examenemq.upo.es/public/auth/login", method:"POST"}, components:[
 		{tag:"div", classes:"panel-head", content:"Iniciar sesión", style:"text-align:center;"},
 		{tag:"div", style:"text-align: center; color: black;",components:[
 			{kind: "fa.Icon", name:"usuarioIcon", icon: "fa-user", size: 5}
@@ -187,7 +188,7 @@ enyo.kind({
         }
 
         if(tipo_login === 3){
-        	window.location = 'http://localhost/certificado/authViafirma.php?token='+this.$.oculto.getAttribute("value");
+        	window.location = 'https://examenemq.upo.es/certificado/authViafirma.php?token='+this.$.oculto.getAttribute("value");
         }
         
         // this.$.pickerMemberType.setAttribute("value",tipo_login);

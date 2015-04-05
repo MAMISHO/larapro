@@ -166,7 +166,7 @@
 								</div>
 								<br />
 								
-								<form action="http://localhost/certificado/firmar.php" method="POST">
+								<form action="https://examenemq.upo.es/certificado/firmar.php" method="POST">
 										<input type="hidden" name="location" value="{{ $pdfLocation }}">
 										<input type="hidden" name="convocatoria" value="{{ $convocatoria }}">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">

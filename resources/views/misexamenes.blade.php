@@ -104,7 +104,7 @@
 												<td><i class="fa fa-times-circle rojo"></i></td>
 												@endif
 												<td>
-													<a href="http://localhost/certificado/documento.php?id_firma={{ $examen['examen_id_firma'] }}&token={{ csrf_token() }}"><i class="fa fa-lock"></i></a>
+													<a href="https://examenemq.upo.es/certificado/documento.php?id_firma={{ $examen['examen_id_firma'] }}&token={{ csrf_token() }}"><i class="fa fa-lock"></i></a>
 												<!-- </td>
 												<td> -->&nbsp;
 													<a href="http://services.viafirma.com/viafirma/v/{{ $examen['examen_id_firma'] }}?j=true"><i class="fa fa-barcode"></i></a>
