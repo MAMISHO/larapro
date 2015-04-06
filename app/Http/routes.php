@@ -27,7 +27,7 @@ Route::get('/cerfificado', 'CertificadoController@index');
 Route::post('/home/examen/firmado', 'CertificadoController@examenFirmado');
 Route::post('/home/anular/firmado', 'HomeController@anuladoFirmado');
 Route::post('/home/documento', 'CertificadoController@obtenerDocumento');
-
+Route::get('/diploma', 'CertificadoController@getDiploma');
 
 Route::get('/alumno', 'HomeController@examenesAlumno');//ver examenes del alumno
 Route::get('/examen', 'HomeController@alumnosExamen');//ver alumnos del examen

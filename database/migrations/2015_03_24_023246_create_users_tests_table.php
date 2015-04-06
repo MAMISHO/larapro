@@ -23,6 +23,7 @@ class CreateUsersTestsTable extends Migration {
 			$table->integer('incorrectas');
 			$table->integer('sin_responder');
 			$table->string('id_firma');
+			$table->string('diploma');
 			
 
 			$table->integer('usuario_id')->unsigned();

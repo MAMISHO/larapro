@@ -308,6 +308,7 @@ class HomeController extends Controller {
             		 'usuarios_examenes.sin_responder as examen_sin_responder',
             		 'usuarios_examenes.fecha as examen_fecha',
             		 'usuarios_examenes.id_firma as examen_id_firma',
+            		 'usuarios_examenes.diploma as examen_diploma',
             		 'examenes.id as examen_id',
             		 'examenes.nombre as examen_nombre',
             		 'examenes.codigo as examen_codigo')

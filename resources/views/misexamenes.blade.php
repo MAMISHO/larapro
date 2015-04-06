@@ -111,6 +111,10 @@
 												<!-- </td>
 												<td> -->&nbsp;
 													<a href="http://services.viafirma.com/viafirma/v/{{ $examen['examen_id_firma'] }}?o=true"><i class="fa fa-cloud-download"></i></a>
+													@if($examen['examen_diploma']!='')
+													&nbsp;
+													<a href="{{ url('/diploma') }}?pdf={{ $examen['usuarios_examenes_id'] }}"><i class="fa fa-graduation-cap" style="color:olive;"></i></a>
+													@endif
 												</td>
 												
 											</tr>
